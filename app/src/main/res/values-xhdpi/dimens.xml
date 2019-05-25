@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--for textView-->
+    <dimen name="text_size_small">10sp</dimen>
+    <dimen name="text_size_medium">12sp</dimen>
+    <dimen name="text_size_large">14sp</dimen>
+    <dimen name="text_size_xlarge">16sp</dimen>
+    <dimen name="text_size_xx_large">30dp</dimen>
+
     <!--for logo-->
     <dimen name="img_logo_width">96dp</dimen>
     <dimen name="img_logo_height">96dp</dimen>

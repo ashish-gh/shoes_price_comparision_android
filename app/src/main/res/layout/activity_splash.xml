@@ -20,6 +20,6 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_message_splash_screen"
         android:layout_gravity="center"
-        android:textSize="28dp"
+        android:textSize="@dimen/text_size_xx_large"
         />
 </LinearLayout>
