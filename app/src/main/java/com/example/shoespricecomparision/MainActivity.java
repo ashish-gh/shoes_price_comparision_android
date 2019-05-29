@@ -25,27 +25,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
+//        tabLayout = findViewById(R.id.tabLayout);
+//        viewPager = findViewById(R.id.viewPager);
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
-
         setupBottomNavigation();
-
         if (savedInstanceState == null) {
-
             loadSearchFragment();
         }
-
     }
 
     private void setupBottomNavigation() {
-
-
         mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         loadSearchFragment();
@@ -63,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadSearchFragment() {
-
         SearchFragment searchFragment = new SearchFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
@@ -77,18 +69,14 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_frame,favoriteFragment);
         fragmentTransaction.commit();
-
     }
 
     private void loadSettingsFragment() {
-
-
         SettingFragment settingFragment = new SettingFragment();
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.fragment_frame,settingFragment);
         fragmentTransaction.commit();
-
     }
 
 }

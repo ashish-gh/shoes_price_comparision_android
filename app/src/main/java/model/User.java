@@ -7,13 +7,15 @@ public class User {
     private String email;
     private String password;
     private String profileImage;
+    private String userType;
 
-    public User(String firstName, String lastName, String email, String password, String profileImage) {
+    public User(String firstName, String lastName, String email, String password, String profileImage, String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.profileImage = profileImage;
+        this.userType = userType;
     }
 
     public int getId() {
@@ -62,5 +64,13 @@ public class User {
 
     public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

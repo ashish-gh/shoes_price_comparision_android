@@ -32,6 +32,6 @@
         android:layout_gravity="bottom"
         android:background="@android:color/white"
         app:elevation="8dp"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 </android.support.design.widget.CoordinatorLayout>
