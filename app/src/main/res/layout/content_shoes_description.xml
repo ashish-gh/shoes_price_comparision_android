@@ -8,10 +8,9 @@
     tools:context=".ShoesDescriptionActivity"
     tools:showIn="@layout/activity_shoes_description">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="text here" />
+    <!--this one is for comment-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
 
 </android.support.v4.widget.NestedScrollView>
