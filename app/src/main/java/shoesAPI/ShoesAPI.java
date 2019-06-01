@@ -30,6 +30,10 @@ public interface ShoesAPI {
     @POST("api/upload")
     Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
 
+    @GET("api/shoes")
+    Call<List<Shoes>> getShoes();
+
+
 
 // -----------------------------------------------------------------------------------
 

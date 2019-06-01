@@ -14,7 +14,7 @@
         card_view:cardCornerRadius="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgShoes"
+            android:id="@+id/imgShoesAdmin"
             android:layout_width="85dp"
             android:layout_height="match_parent"
             />
@@ -25,15 +25,8 @@
             android:layout_marginLeft="85dp"
             >
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="168dp"
-                android:layout_toEndOf="@id/tvShoesName"
-                android:src="@drawable/ic_favorite" />
-
             <TextView
-                android:id="@+id/tvShoesBrand"
+                android:id="@+id/tvShoesBrandAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -41,30 +34,30 @@
                 android:textSize="20sp"
                 />
             <TextView
-                android:id="@+id/tvShoesName"
+                android:id="@+id/tvShoesNameAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_below="@id/tvShoesBrand"
+                android:layout_below="@id/tvShoesBrandAdmin"
                 android:hint="Item Name"
                 android:textSize="15sp"
                 />
 
             <TextView
-                android:id="@+id/tvShoesPrice"
+                android:id="@+id/tvShoesPriceAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvShoesName"
+                android:layout_below="@+id/tvShoesNameAdmin"
                 android:layout_marginStart="20dp"
                 android:hint="Price"
                 android:textSize="15sp"
                 />
 
             <TextView
-                android:id="@+id/tvDescription"
+                android:id="@+id/tvDescriptionAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvShoesPrice"
+                android:layout_below="@+id/tvShoesPriceAdmin"
                 android:layout_marginStart="20dp"
                 android:hint="Description"
                 android:textSize="15sp"

@@ -59,8 +59,11 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
         }
 
 //        setting values in recyclerView
+        shoesHolder.tvBrand.setText(shoes.getShoesBrand());
         shoesHolder.tvName.setText(shoes.getShoesName());
+        shoesHolder.tvDescription.setText(shoes.getShoesDescription());
         shoesHolder.tvPrice.setText(Float.toString(shoes.getShoesPrice()));
+
 
 //      add other variables later
     }
@@ -73,15 +76,17 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
     public class ShoesHolder extends RecyclerView.ViewHolder
     {
 
-        private TextView tvName;
+        private TextView tvName,tvBrand,tvDescription;
         private TextView tvPrice;
         private ImageView imgShoes;
 
         public ShoesHolder(View itemView) {
             super(itemView);
             imgShoes = itemView.findViewById(R.id.imgShoes);
-            tvName = (TextView) itemView.findViewById(R.id.tvName);
-            tvPrice = (TextView) itemView.findViewById(R.id.tvPrice);
+            tvBrand= (TextView) itemView.findViewById(R.id.tvShoesBrand);
+            tvName = (TextView) itemView.findViewById(R.id.tvShoesName);
+            tvPrice = (TextView) itemView.findViewById(R.id.tvShoesPrice);
+            tvDescription= (TextView) itemView.findViewById(R.id.tvDescription);
         }
     }
 }
