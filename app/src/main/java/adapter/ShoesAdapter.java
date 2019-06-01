@@ -48,7 +48,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
     @Override
     public void onBindViewHolder(@NonNull ShoesHolder shoesHolder, int i) {
         Shoes shoes = shoesList.get(i);
-        String imagePath = Url.BASE_URL + "uploads/" + shoes.getImage();
+        String imagePath = Url.BASE_URL + "uploads/" + shoes.getShoesImageName();
         strictMode();
 
         try {
@@ -59,8 +59,8 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
         }
 
 //        setting values in recyclerView
-        shoesHolder.tvName.setText(shoes.getName());
-        shoesHolder.tvPrice.setText(Float.toString(shoes.getPrice()));
+        shoesHolder.tvName.setText(shoes.getShoesName());
+        shoesHolder.tvPrice.setText(Float.toString(shoes.getShoesPrice()));
 
 //      add other variables later
     }

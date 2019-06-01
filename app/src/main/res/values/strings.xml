@@ -30,6 +30,22 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="settings_name">Account Settings</string>
 
+
+    <!--Admin Dashboard-->
+    <string name="add_item_admin_dashboard">ADD ITEMS</string>
+    <string name="list_item_admin_dashboard">LIST ITEMS</string>
+    <string name="add_shop_admin_dashboard">ADD SHOPS</string>
+    <string name="list_shop_admin_dashboard">LIST SHOPS</string>
+    <string name="list_user_admin_dashboard">LIST USERS</string>
+
+    <!--Add Item-->
+    <string name="select_brand">Select Brand</string>
+    <string name="enter_shoe_name">Name</string>
+    <string name="enter_shoe_price">Price</string>
+    <string name="enter_shoe_description">Description</string>
+    <string name="btn_add_shoe">Save</string>
+    <string name="select_shoe_image">Select Image</string>
+
     <!--Bottom bottom_nav_menu-->
     <string name="nav_search">Search</string>
     <string name="nav_favorite">Favorite</string>

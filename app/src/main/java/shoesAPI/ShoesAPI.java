@@ -4,7 +4,9 @@ import android.content.ClipData;
 
 import java.util.List;
 
+import model.ImageResponse;
 import model.Shoes;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
@@ -12,11 +14,25 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public interface ShoesAPI {
     //  using object
-    @POST("shoes")
-    Call<Void> addShoes(@Header("Cookie") String cookie, @Body Shoes shoes);
+//    @POST("shoes")
+//    Call<Void> addShoes(@Header("Cookie") String cookie, @Body Shoes shoes);
+
+
+//------------------------------------------------------------------------------------
+    @POST("api/addShoe")
+    Call<Void> addShoes(@Body Shoes shoes);
+
+    @Multipart
+    @POST("api/upload")
+    Call<ImageResponse> uploadImage(@Part MultipartBody.Part img);
+
+
+// -----------------------------------------------------------------------------------
+
 
     //    for uploading image
 //    @Multipart

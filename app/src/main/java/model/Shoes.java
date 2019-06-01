@@ -2,18 +2,18 @@ package model;
 
 public class Shoes {
     private int id;
-    private String name;
-    private float price;
-    private String brand;
-    private String description;
-    private String image;
+    private String shoesBrand;
+    private String shoesName;
+    private float shoesPrice;
+    private String shoesDescription;
+    private String shoesImageName;
 
-    public Shoes(String name, float price, String brand, String description,String image) {
-        this.name = name;
-        this.price = price;
-        this.brand = brand;
-        this.description = description;
-        this.image = image;
+    public Shoes(String shoesBrand, String shoesName, float shoesPrice, String shoesDescription, String shoesImageName) {
+        this.shoesBrand = shoesBrand;
+        this.shoesName = shoesName;
+        this.shoesPrice = shoesPrice;
+        this.shoesDescription = shoesDescription;
+        this.shoesImageName = shoesImageName;
     }
 
     public int getId() {
@@ -24,43 +24,43 @@ public class Shoes {
         this.id = id;
     }
 
-    public String getBrand() {
-        return brand;
+    public String getShoesBrand() {
+        return shoesBrand;
     }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
+    public void setShoesBrand(String shoesBrand) {
+        this.shoesBrand = shoesBrand;
     }
 
-    public String getDescription() {
-        return description;
+    public String getShoesName() {
+        return shoesName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setShoesName(String shoesName) {
+        this.shoesName = shoesName;
     }
 
-    public String getName() {
-        return name;
+    public float getShoesPrice() {
+        return shoesPrice;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setShoesPrice(float shoesPrice) {
+        this.shoesPrice = shoesPrice;
     }
 
-    public float getPrice() {
-        return price;
+    public String getShoesDescription() {
+        return shoesDescription;
     }
 
-    public void setPrice(float price) {
-        this.price = price;
+    public void setShoesDescription(String shoesDescription) {
+        this.shoesDescription = shoesDescription;
     }
 
-    public String getImage() {
-        return image;
+    public String getShoesImageName() {
+        return shoesImageName;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setShoesImageName(String shoesImageName) {
+        this.shoesImageName = shoesImageName;
     }
 }
