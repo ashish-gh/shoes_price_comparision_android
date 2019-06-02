@@ -5,35 +5,35 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+
     <LinearLayout
-        android:layout_margin="10dp"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="156dp"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/etSearchShoes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Shoes Name"/>
+            android:hint="Shoes Name" />
 
         <EditText
             android:id="@+id/etSearchBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Shoes Brand"/>
+            android:hint="Shoes Brand" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search..."/>
-
+            android:text="Search..." />
 
 
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewSearch"
+        android:id="@+id/recyclerViewListShoes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

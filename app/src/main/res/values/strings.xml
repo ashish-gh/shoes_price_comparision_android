@@ -60,6 +60,11 @@
 
     <string name="welcome_message_splash_screen">Welcome to my app</string>
     <string name="title_activity_shoes_description">ShoesDescriptionActivity</string>
+
+    <string name="shop_description">
+        The Ramesh shop is located in the historical heart of the city, right next to the Haymards station.
+        Varied selection of shoes can be purchased over here.
+    </string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
 

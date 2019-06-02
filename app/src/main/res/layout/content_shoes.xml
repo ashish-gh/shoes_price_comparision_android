@@ -11,7 +11,10 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        card_view:cardCornerRadius="5dp">
+        card_view:cardCornerRadius="5dp"
+        android:background="#ddd"
+        android:layout_marginTop="5dp"
+        >
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgShoes"
