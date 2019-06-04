@@ -14,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewActivity"></activity>
+        <activity
+            android:name=".ReviewActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
+
+        </activity>
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
         <activity android:name=".admin.AdminDashboardActivity" />

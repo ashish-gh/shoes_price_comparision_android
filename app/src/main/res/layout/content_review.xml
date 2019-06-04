@@ -29,13 +29,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp">
                 <TextView
-                    android:id="@+id/tv"
-                    android:layout_width="match_parent"
+                    android:id="@+id/tvReview"
                     android:layout_height="40dp"
                     android:text="Where can i buy this shoes ? I have been trying to buy this shoes for so long. But I have not found it any where."
-                    />
+                    android:layout_width="match_parent" />
                 <TextView
-                    android:layout_below="@+id/tv"
+                    android:id="@+id/tvUserReview"
+                    android:layout_below="@+id/tvReview"
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:layout_marginLeft="10dp"

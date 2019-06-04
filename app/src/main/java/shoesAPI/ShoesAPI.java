@@ -5,6 +5,7 @@ import android.content.ClipData;
 import java.util.List;
 
 import model.ImageResponse;
+import model.Review;
 import model.Shoes;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -32,6 +33,12 @@ public interface ShoesAPI {
 
     @GET("api/shoes")
     Call<List<Shoes>> getShoes();
+
+//----------------------------------------
+//for review
+
+    @GET("api/review")
+    Call<List<Review>> getReviews();
 
 
 

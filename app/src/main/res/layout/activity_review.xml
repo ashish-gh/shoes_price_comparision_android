@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,28 +17,39 @@
         />
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewReview"
         android:layout_width="match_parent"
-        android:layout_height="632dp">
+        android:layout_height="650dp"
+        android:layout_below="@id/toolbarReview"
+        >
 
     </android.support.v7.widget.RecyclerView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/recyclerViewReview"
+        >
 
         <EditText
-
             android:id="@+id/etReview"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="Enter your review"/>
+            android:hint="Enter your review" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_send"
+            android:id="@+id/btnReview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Send"
+            android:layout_toRightOf="@id/etReview"
+            android:drawableTop="@drawable/button_radius"
+            android:drawableBottom="@drawable/button_radius"
+            android:background="?android:attr/selectableItemBackground"
             />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>
