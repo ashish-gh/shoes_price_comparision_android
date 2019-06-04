@@ -11,21 +11,51 @@ import android.view.Gravity;
 
 public class ReviewActivity extends AppCompatActivity {
 
+    int onStartCount = 0;
     private Toolbar toolbarReview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
         setContentView(R.layout.activity_review);
 
+//      set animation
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+        } else // already created so reverse animation
+        {
+            onStartCount = 2;
+        }
+
+//      set toolbar
         toolbarReview = findViewById(R.id.toolbarReview);
         setSupportActionBar(toolbarReview);
+
+//      set back button in toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
     }
 
-//to go back to the ShoesDescriptionPage
+//     onStart() is called when activity is visible to user
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        if (onStartCount > 1) {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+
+        } else if (onStartCount == 1) {
+            onStartCount++;
+        }
+
+    }
+
+    //to go back to the ShoesDescriptionPage
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -34,19 +64,6 @@ public class ReviewActivity extends AppCompatActivity {
         finish();
         return  true;
 
-    }
-
-    public void setAnimation() {
-        if (Build.VERSION.SDK_INT > 20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(1000);
-            slide.setInterpolator(new FastOutSlowInInterpolator());
-            slide.setStartDelay(100);
-//            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-        }
     }
 
 }

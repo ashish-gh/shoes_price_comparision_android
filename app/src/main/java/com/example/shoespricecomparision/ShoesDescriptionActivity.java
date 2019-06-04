@@ -20,33 +20,50 @@ import android.widget.TextView;
 
 public class ShoesDescriptionActivity extends AppCompatActivity {
 
+    int onStartCount = 0;
     private Toolbar toolbar;
     private TextView tvNameDes,tvReviewDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setting slide animation for this page
-        setAnimation();
         setContentView(R.layout.activity_shoes_description);
+
+//        setting slide animation for this page
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+        } else // already created so reverse animation
+        {
+            onStartCount = 2;
+        }
+
 
         tvNameDes = findViewById(R.id.tvNameDescription);
         tvReviewDescription = findViewById(R.id.tvReviewDescription);
 
+//      setting toolbar for this activity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//      setting back navigation button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
 
 
-//        setting clicklisetener on tvReviewDescription
+//        setting clickListener on tvReviewDescription
 
         tvReviewDescription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                calling startActivity to set animation style
-                startActivity();
+
+                Intent intent = new Intent(ShoesDescriptionActivity.this,ReviewActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -69,14 +86,26 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
             }
         });
 
-
-
-
+//        setting splash animation in textView
         int[] attrs = new int[]{R.attr.selectableItemBackground};
         TypedArray typedArray = this    .obtainStyledAttributes(attrs);
         int backgroundResource = typedArray.getResourceId(0, 0);
         tvNameDes.setBackgroundResource(backgroundResource);
 
+    }
+
+//     onStart() is called when activity is visible to user
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        if (onStartCount > 1) {
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+
+        } else if (onStartCount == 1) {
+            onStartCount++;
+        }
 
     }
 
@@ -99,29 +128,31 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
 
 //      this is slide animation for this activity which loads when page gets started
 
-    public void setAnimation() {
-        if (Build.VERSION.SDK_INT > 20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(1000);
-            slide.setInterpolator(new FastOutSlowInInterpolator());
-//            slide.setStartDelay(100);
-//            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-        }
-    }
+//    public void setAnimation() {
+//        if (Build.VERSION.SDK_INT > 20) {
+//            Slide slide = new Slide();
+//            slide.setSlideEdge(Gravity.LEFT);
+//            slide.setDuration(1000);
+//            slide.setInterpolator(new FastOutSlowInInterpolator());
+////            slide.setStartDelay(100);
+////            slide.setInterpolator(new AccelerateDecelerateInterpolator());
+//            getWindow().setExitTransition(slide);
+//            getWindow().setEnterTransition(slide);
+//        }
+//    }
 
 //    this is used to set animation i.e. for review activity page
 
-    public void startActivity(){
-        Intent i = new Intent(ShoesDescriptionActivity.this, ReviewActivity.class);
-        if(Build.VERSION.SDK_INT>20){
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(ShoesDescriptionActivity.this);
-            startActivity(i,options.toBundle());
-        }
-        else {
-            startActivity(i);
-        }
-    }
+//    public void startActivity(){
+//        Intent i = new Intent(ShoesDescriptionActivity.this, ReviewActivity.class);
+//        if(Build.VERSION.SDK_INT>20){
+//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(ShoesDescriptionActivity.this);
+//            startActivity(i,options.toBundle());
+//        }
+//        else {
+//            startActivity(i);
+//        }
+//    }
+
+
 }
