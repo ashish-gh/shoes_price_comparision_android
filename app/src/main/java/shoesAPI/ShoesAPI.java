@@ -40,6 +40,9 @@ public interface ShoesAPI {
     @GET("api/review")
     Call<List<Review>> getReviews();
 
+    @POST("api/addReview")
+    Call<Void> addReview(@Body Review review);
+
 
 
 // -----------------------------------------------------------------------------------

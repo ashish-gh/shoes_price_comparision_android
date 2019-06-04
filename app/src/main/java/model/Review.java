@@ -9,7 +9,7 @@ public class Review {
 
     public Review(String review, String userName, int shoesId, String reviewTime) {
         this.review = review;
-        this.userName = userName    ;
+        this.userName = userName;
         this.shoesId = shoesId;
         this.reviewTime = reviewTime;
     }

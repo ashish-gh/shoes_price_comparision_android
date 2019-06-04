@@ -1,17 +1,21 @@
 package adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shoespricecomparision.R;
+import com.example.shoespricecomparision.ShoesDescriptionActivity;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -47,7 +51,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
 
     @Override
     public void onBindViewHolder(@NonNull ShoesHolder shoesHolder, int i) {
-        Shoes shoes = shoesList.get(i);
+        final Shoes shoes = shoesList.get(i);
         String imagePath = Url.BASE_URL + "uploads/" + shoes.getShoesImageName();
         strictMode();
 
@@ -63,6 +67,32 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
         shoesHolder.tvName.setText(shoes.getShoesName());
         shoesHolder.tvDescription.setText(shoes.getShoesDescription());
         shoesHolder.tvPrice.setText(Float.toString(shoes.getShoesPrice()));
+        shoesHolder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ShoesDescriptionActivity.class);
+                intent.putExtra("shoesBrand",shoes.getShoesBrand());
+                intent.putExtra("shoesName",shoes.getShoesName());
+                intent.putExtra("shoesPrice",shoes.getShoesPrice());
+                intent.putExtra("shoesDescription",shoes.getShoesDescription());
+                context.startActivity(intent);
+
+            }
+        });
+
+//        shoesHolder.recyclerViewShoes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, ShoesDescriptionActivity.class);
+//                intent.putExtra("shoesBrand",shoes.getShoesBrand());
+//                intent.putExtra("shoesName",shoes.getShoesName());
+//                intent.putExtra("shoesPrice",shoes.getShoesPrice());
+//                intent.putExtra("shoesDescription",shoes.getShoesDescription());
+//                context.startActivity(intent);
+//
+//            }
+//        });
+
 
 
 //      add other variables later
@@ -79,6 +109,10 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
         private TextView tvName,tvBrand,tvDescription;
         private TextView tvPrice;
         private ImageView imgShoes;
+        private RecyclerView recyclerViewShoes;
+        private CardView cardView;
+
+
 
         public ShoesHolder(View itemView) {
             super(itemView);
@@ -87,6 +121,8 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
             tvName = (TextView) itemView.findViewById(R.id.tvShoesName);
             tvPrice = (TextView) itemView.findViewById(R.id.tvShoesPrice);
             tvDescription= (TextView) itemView.findViewById(R.id.tvDescription);
+            recyclerViewShoes = (RecyclerView) itemView.findViewById(R.id.recyclerViewListShoes);
+            cardView = (CardView) itemView.findViewById(R.id.cardViewShoes);
         }
     }
 }

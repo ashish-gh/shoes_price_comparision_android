@@ -30,7 +30,6 @@ import url.Url;
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerViewListShoes;
-    String[] values = {"A", "B","C","D","E","F","G","H"};
 
     public SearchFragment() {
         // Required empty public constructor
