@@ -41,6 +41,8 @@ import url.Url;
 
 public class UpdateShoesActivity extends AppCompatActivity {
 
+    int onStartCount = 0;
+
     private EditText etShoeName, etShoePrice, etShoeDescription;
     private Spinner spnBrand;
     private ImageView imgShoe, imgBackUpdateShoes;
@@ -52,6 +54,19 @@ public class UpdateShoesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_shoes);
+
+
+//        setting slide animation for this page
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+        } else // already created so reverse animation
+        {
+            onStartCount = 2;
+        }
+
 
         etShoeName = findViewById(R.id.etUpdateShoesName);
         etShoePrice = findViewById(R.id.etUpdateShoesPrice);
@@ -108,6 +123,23 @@ public class UpdateShoesActivity extends AppCompatActivity {
             etShoeDescription.setText("shoesDescription");
         }
     }
+
+
+//     onStart() is called when activity is visible to user
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        if (onStartCount > 1) {
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+
+        } else if (onStartCount == 1) {
+            onStartCount++;
+        }
+
+    }
+
 
     private void browseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK); //to browse image
