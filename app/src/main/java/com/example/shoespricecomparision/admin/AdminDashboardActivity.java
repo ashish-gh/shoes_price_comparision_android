@@ -1,10 +1,13 @@
 package com.example.shoespricecomparision.admin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.shoespricecomparision.MainActivity;
 import com.example.shoespricecomparision.R;
@@ -52,11 +55,41 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 break;
 
             case R.id.cardLogout:
-                Intent intentLogOut = new Intent(this, MainActivity.class);
-                startActivity(intentLogOut);
-                finish();
+                logout();
                 break;
         }
+
+
+
+    }
+
+    private void logout() {
+//        alert dialog box in logout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to logout ?");
+//        setting positive message
+        builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(AdminDashboardActivity.this, "You clicked yes button", Toast.LENGTH_SHORT).show();
+
+                Intent intentLogOut = new Intent(AdminDashboardActivity.this, MainActivity.class);
+                startActivity(intentLogOut);
+                finish();
+
+            }
+        });
+
+//        setting negative message
+        builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
     }
 }
