@@ -37,6 +37,8 @@
     <string name="add_shop_admin_dashboard">ADD SHOPS</string>
     <string name="list_shop_admin_dashboard">LIST SHOPS</string>
     <string name="list_user_admin_dashboard">LIST USERS</string>
+    <string name="logout_admin_dashboard">LOG OUT</string>
+    <string name="list_comments_admin_dashboard">LIST COMMENTS</string>
 
     <!--Add Item-->
     <string name="select_brand">Select Brand</string>
