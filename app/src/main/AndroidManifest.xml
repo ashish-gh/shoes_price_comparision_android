@@ -20,6 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+<<<<<<< HEAD
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -42,6 +43,11 @@
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
         <activity android:name=".admin.AdminDashboardActivity" />
+=======
+        <activity android:name=".admin.UpdateShoesActivity"></activity>
+        <activity android:name=".admin.ListShoesActivity" />
+        <activity android:name=".admin.AddItemActivity" /> <!-- <activity android:name=".admin.AdminDashboardActivity" /> -->
+>>>>>>> adminDashboard
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_shoes_description"

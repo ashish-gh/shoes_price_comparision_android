@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import com.example.shoespricecomparision.MainActivity;
 import com.example.shoespricecomparision.R;
 
 public class AdminDashboardActivity extends AppCompatActivity implements View.OnClickListener{
@@ -47,6 +48,12 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
             case R.id.cardAddShops:
                 Intent intentAddShops= new Intent(this,ListShoesActivity.class);
                 startActivity(intentAddShops);
+                finish();
+                break;
+
+            case R.id.cardLogout:
+                Intent intentLogOut = new Intent(this, MainActivity.class);
+                startActivity(intentLogOut);
                 finish();
                 break;
         }

@@ -38,6 +38,10 @@
     <string name="list_shop_admin_dashboard">LIST SHOPS</string>
     <string name="list_user_admin_dashboard">LIST USERS</string>
     <string name="logout_admin_dashboard">LOG OUT</string>
+<<<<<<< HEAD
+=======
+    <string name="list_comments_admin_dashboard">LIST COMMENTS</string>
+>>>>>>> adminDashboard
 
     <!--Add Item-->
     <string name="select_brand">Select Brand</string>
@@ -46,6 +50,12 @@
     <string name="enter_shoe_description">Description</string>
     <string name="btn_add_shoe">Save</string>
     <string name="select_shoe_image">Select Image</string>
+
+
+    <!--Update Item-->
+    <string name="btn_update_shoes">Update</string>
+
+
 
     <!--Bottom bottom_nav_menu-->
     <string name="nav_search">Search</string>

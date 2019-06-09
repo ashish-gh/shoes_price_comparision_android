@@ -25,12 +25,13 @@
             android:layout_marginLeft="85dp"
             >
 
+
             <TextView
                 android:id="@+id/tvShoesBrandAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:hint="Item Name"
+                android:hint="Brand Name"
                 android:textSize="20sp"
                 />
             <TextView
@@ -62,7 +63,23 @@
                 android:hint="Description"
                 android:textSize="15sp"
                 />
+            <ImageView
+                android:id="@+id/imgUpdate"
+                android:src="@drawable/ic_update"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="100dp"
+                android:layout_toRightOf="@id/tvShoesBrandAdmin"
+                />
 
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="231sp"
+                android:layout_below="@id/imgUpdate"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_delete_forever"
+                />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
