@@ -6,35 +6,61 @@
     android:orientation="vertical"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardListUsers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#eee"
+        app:cardCornerRadius="10dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        >
+    />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="200dp"
         android:layout_margin="10dp"
         android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/etSearchShoes"
+        <Spinner
+            android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Shoes Name" />
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"/>
+
 
         <EditText
             android:id="@+id/etSearchBrand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Shoes Brand" />
-
+        <EditText
+            android:id="@+id/etSearchShoes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Shoes Name" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Search..." />
+    </LinearLayout>
+    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerViewListShoes"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewListShoes"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>
