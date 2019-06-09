@@ -22,6 +22,9 @@ import com.example.shoespricecomparision.R;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.List;
 
 import model.ImageResponse;
 import model.Shoes;
@@ -36,55 +39,76 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import shoesAPI.ShoesAPI;
 import url.Url;
 
-public class AddItemActivity extends AppCompatActivity {
-    private EditText  etShoeName, etShoePrice, etShoeDescription;
+public class UpdateShoesActivity extends AppCompatActivity {
+
+    private EditText etShoeName, etShoePrice, etShoeDescription;
     private Spinner spnBrand;
-    private ImageView imgShoe, imgBackAddItem;
-    private Button btnAddShoe;
+    private ImageView imgShoe, imgBackUpdateShoes;
+    private Button btnUpdateShoe;
     String imagePath;
     String imageName;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item);
+        setContentView(R.layout.activity_update_shoes);
 
-        spnBrand = findViewById(R.id.spnBrand);
-        etShoeName = findViewById(R.id.etAddShoeName);
-        etShoePrice= findViewById(R.id.etAddShoePrice);
-        etShoeDescription = findViewById(R.id.etAddShoeDescription);
-        imgShoe = findViewById(R.id.imgAddShoe);
-        imgBackAddItem = findViewById(R.id.imgBackAddItem);
-        btnAddShoe = findViewById(R.id.btnAddShoe);
+        etShoeName = findViewById(R.id.etUpdateShoesName);
+        etShoePrice = findViewById(R.id.etUpdateShoesPrice);
+        etShoeDescription = findViewById(R.id.etUpdateShoesDescription);
+        spnBrand  = findViewById(R.id.spnBrandUpdate);
+        imgShoe = findViewById(R.id.imgUpdateShoes);
+        imgBackUpdateShoes = findViewById(R.id.imgBackUpdateShoes);
+        btnUpdateShoe = findViewById(R.id.btnUpdateShoes);
+
 
 //        intent to go back to admin page
-        imgBackAddItem.setOnClickListener(new View.OnClickListener() {
+        imgBackUpdateShoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddItemActivity.this, AdminDashboardActivity.class);
+                Intent intent = new Intent(UpdateShoesActivity.this, AdminDashboardActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-//        to add shoe in database
-        btnAddShoe.setOnClickListener(new View.OnClickListener() {
+//        to update shoes in database
+        btnUpdateShoe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+                update();
             }
         });
 
+//      to browse image
         imgShoe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 browseImage();
             }
         });
+
+//      for description on clicked image
+        strictMode();
+        URL url = null;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            imgShoe.setImageResource(bundle.getInt("image"));
+//            change the url to get image
+            try {
+                url = new URL("http://10.0.2.2:8000/uploads/"+bundle.getString("image"));
+                imgShoe.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+//            setting values in the edit text
+            etShoeName.setText(bundle.getString("shoesName"));
+            etShoePrice.setText(bundle.getInt("shoesPrice"));
+            etShoeDescription.setText("shoesDescription");
+        }
     }
 
-//    browse function to search image
     private void browseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK); //to browse image
         intent.setType("image/*"); //user now can only select the image
@@ -100,9 +124,10 @@ public class AddItemActivity extends AppCompatActivity {
             }
         }
         Uri uri = data.getData();
-        imagePath = getRealPathFromUri(uri);
-        previewImage(imagePath); //after getting imagepath display it in imageview
+//        imagePath = getRealPathFromUri(uri);
+//        previewImage(imagePath); //after getting imagepath display it in imageview
     }
+
 
     private String getRealPathFromUri(Uri uri) {
         String[] projection = {MediaStore.Images.Media.DATA};
@@ -120,14 +145,10 @@ public class AddItemActivity extends AppCompatActivity {
         if(imgFlie.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFlie.getAbsolutePath());
             imgShoe.setImageBitmap(myBitmap);
-
         }
     }
 
-
-
-
-    private void save() {
+    private void update() {
 //        SaveImageOnly();
         String shoesBrand = "Addidas";
         String shoesName = etShoeName.getText().toString();
@@ -144,23 +165,22 @@ public class AddItemActivity extends AppCompatActivity {
 
         ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
 
-        Call<Void> itemsCall = shoesAPI.addShoes(shoes);
+        Call<Void> itemsCall = shoesAPI.updateShoes(shoes);
 
         itemsCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (!response.isSuccessful()){
 
-                    Toast.makeText(AddItemActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(UpdateShoesActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(AddItemActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
-
+                Toast.makeText(UpdateShoesActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddItemActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateShoesActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -175,7 +195,7 @@ public class AddItemActivity extends AppCompatActivity {
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
         Call<ImageResponse> responseBodyCall = shoesAPI.uploadImage(body);
 
-        StrictMode();
+        strictMode();
 
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
@@ -189,10 +209,12 @@ public class AddItemActivity extends AppCompatActivity {
         }
     }
 
-    private void StrictMode() {
+
+
+
+    private void strictMode() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
-
 
 }

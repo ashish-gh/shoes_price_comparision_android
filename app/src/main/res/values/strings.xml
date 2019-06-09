@@ -48,6 +48,12 @@
     <string name="btn_add_shoe">Save</string>
     <string name="select_shoe_image">Select Image</string>
 
+
+    <!--Update Item-->
+    <string name="btn_update_shoes">Update</string>
+
+
+
     <!--Bottom bottom_nav_menu-->
     <string name="nav_search">Search</string>
     <string name="nav_favorite">Favorite</string>

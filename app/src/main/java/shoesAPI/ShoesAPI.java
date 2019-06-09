@@ -14,6 +14,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 
 public interface ShoesAPI {
@@ -32,6 +33,10 @@ public interface ShoesAPI {
 
     @GET("api/shoes")
     Call<List<Shoes>> getShoes();
+
+    @PUT("api/shoes")
+    Call<Void> updateShoes(@Body Shoes shoes);
+
 
 
 
