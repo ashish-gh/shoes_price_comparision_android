@@ -48,6 +48,7 @@ public class SearchFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the shoes_admin for this fragment
         View view = inflater.inflate(R.layout.fragment_search,container,false);
+
         recyclerViewListShoes = (RecyclerView) view.findViewById(R.id.recyclerViewListShoes);
         spinner = view.findViewById(R.id.spinner1);
 

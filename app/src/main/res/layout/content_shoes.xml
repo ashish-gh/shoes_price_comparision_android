@@ -28,12 +28,17 @@
             android:layout_marginLeft="85dp"
             >
 
+
+
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:padding="10dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="168dp"
                 android:layout_toEndOf="@id/tvShoesName"
-                android:src="@drawable/ic_favorite" />
+                android:src="@drawable/ic_favorite"
+                android:background="@drawable/ripple_effect"
+                />
 
             <TextView
                 android:id="@+id/tvShoesBrand"

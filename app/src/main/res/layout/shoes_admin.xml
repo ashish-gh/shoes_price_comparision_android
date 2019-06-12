@@ -25,6 +25,12 @@
             android:layout_marginLeft="85dp"
             >
 
+            <TextView
+                android:id="@+id/tvShoesId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                />
 
             <TextView
                 android:id="@+id/tvShoesBrandAdmin"
@@ -64,7 +70,8 @@
                 android:textSize="15sp"
                 />
             <ImageView
-                android:id="@+id/imgUpdate"
+                android:id="@+id/imgUpdateShoes"
+                android:padding="5dp"
                 android:src="@drawable/ic_update"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -73,10 +80,12 @@
                 />
 
             <ImageView
+                android:id="@+id/imgDeleteShoes"
+                android:padding="5dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="231sp"
-                android:layout_below="@id/imgUpdate"
+                android:layout_below="@id/imgUpdateShoes"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_delete_forever"
                 />

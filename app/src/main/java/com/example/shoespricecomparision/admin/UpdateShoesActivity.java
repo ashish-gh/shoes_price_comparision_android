@@ -108,10 +108,10 @@ public class UpdateShoesActivity extends AppCompatActivity {
         URL url = null;
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            imgShoe.setImageResource(bundle.getInt("image"));
+            imgShoe.setImageResource(bundle.getInt("shoesImage"));
 //            change the url to get image
             try {
-                url = new URL("http://10.0.2.2:8000/uploads/"+bundle.getString("image"));
+                url = new URL("http://10.0.2.2:8000/uploads/"+bundle.getString("shoesImage"));
                 imgShoe.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
             } catch (IOException e) {
                 e.printStackTrace();
