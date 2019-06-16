@@ -10,6 +10,7 @@ import model.Shoes;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -33,6 +34,10 @@ public interface ShoesAPI {
 
     @GET("api/shoes")
     Call<List<Shoes>> getShoes();
+
+    @GET("api/shoes/:shoesId")
+    Call<List<Shoes>> getShoeById(@Field("itemId") String itemId);
+
 
 //----------------------------------------
 //for review
