@@ -6,61 +6,67 @@
     android:orientation="vertical"
     >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardListUsers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="#eee"
-        app:cardCornerRadius="10dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        >
-    />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="10dp"
-        android:orientation="vertical">
-        <Spinner
-            android:id="@+id/spinner1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"/>
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:id="@+id/cardListUsers"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="150dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:layout_marginRight="10dp"-->
+        <!--android:layout_marginBottom="30dp"-->
+        <!--android:background="#eee"-->
+        <!--app:cardCornerRadius="5dp"-->
+        <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"-->
+        <!--&gt;-->
+    <!--/>-->
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imgQr"-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:src="@drawable/qr"-->
+            <!--/>-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/etSearchShoes"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_toRightOf="@id/imgQr"-->
+            <!--android:hint="Shoes Name" />-->
+        <!--<Button-->
+            <!--android:id="@+id/btnSearchShoes"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_below="@id/imgQr"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="Search . . ."/>-->
+        <!--</RelativeLayout>-->
 
 
-        <EditText
-            android:id="@+id/etSearchBrand"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Shoes Brand" />
-        <EditText
-            android:id="@+id/etSearchShoes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Shoes Name" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search..." />
-    </LinearLayout>
-    </android.support.v7.widget.CardView>
-    </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--</android.support.v7.widget.CardView>-->
+    <!--</RelativeLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!---->
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewListShoes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </LinearLayout>
+    <!--</LinearLayout>-->
 
 </LinearLayout>

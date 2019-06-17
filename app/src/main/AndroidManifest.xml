@@ -41,18 +41,19 @@
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
-        <activity android:name=".admin.AdminDashboardActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".admin.UpdateShoesActivity"></activity>
         <!--<activity android:name=".admin.ListShoesActivity" />-->
         <!--<activity android:name=".admin.AddItemActivity" /> &lt;!&ndash; <activity android:name=".admin.AdminDashboardActivity" /> &ndash;&gt;-->
+        <!--<activity android:name=".MainActivity" />-->
         <activity
-            android:name=".MainActivity"
+            android:name=".ShoesDescriptionActivity"
             android:label="@string/title_activity_shoes_description"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SplashActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ShoesDescriptionActivity">
+        <activity android:name=".admin.AdminDashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

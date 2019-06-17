@@ -29,7 +29,9 @@ import url.Url;
 public class ListShoesActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewListShoeAdmin;
-    private ImageView imgUpdateShoes;
+
+//    private ImageView imgUpdateShoes;
+//    private ImageView imgDeleteShoes;
 
 
 
@@ -38,18 +40,18 @@ public class ListShoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_shoes);
 
-        imgUpdateShoes = findViewById(R.id.imgUpdateShoes);
+//        imgUpdateShoes = findViewById(R.id.imgUpdateShoes);
 //        imgDeleteShoes= findViewById(R.id.imgDeleteShoes);
 
-        imgUpdateShoes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                call update activity to update shoes
-                Intent intent = new Intent(ListShoesActivity.this,UpdateShoesActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+//        imgUpdateShoes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                call update activity to update shoes
+//                Intent intent = new Intent(ListShoesActivity.this,UpdateShoesActivity.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
 
 
 

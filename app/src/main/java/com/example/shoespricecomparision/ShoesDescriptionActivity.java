@@ -94,7 +94,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
 
     }
 
-//     onStart() is called when activity is visible to user
+    //     onStart() is called when activity is visible to user
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub

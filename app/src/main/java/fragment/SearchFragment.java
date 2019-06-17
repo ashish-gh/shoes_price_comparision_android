@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.shoespricecomparision.R;
@@ -27,16 +30,17 @@ import retrofit2.Response;
 import shoesAPI.ShoesAPI;
 import url.Url;
 
+import static android.support.constraint.Constraints.TAG;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerViewListShoes;
+//    private EditText etShoesName;
+//    private Button btnSearchShoes;
 
-    private Spinner spinner;
-
-    String[] bankNames={"BOI","SBI","HDFC","PNB","OBC"};
 
     public SearchFragment() {
         // Required empty public constructor
@@ -50,22 +54,16 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search,container,false);
 
         recyclerViewListShoes = (RecyclerView) view.findViewById(R.id.recyclerViewListShoes);
-        spinner = view.findViewById(R.id.spinner1);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,bankNames);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String bank_name = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), bank_name, Toast.LENGTH_SHORT).show();
-            }
+//        etShoesName = view.findViewById(R.id.etSearchShoes);
+//        btnSearchShoes = view.findViewById(R.id.btnSearchShoes);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        btnSearchShoes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                search();
+//            }
+//        });
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
@@ -86,6 +84,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onFailure(Call<List<Shoes>> call, Throwable t) {
                 Toast.makeText(getActivity(), "Error : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Log.d("error", t.getLocalizedMessage());
             }
         });
 
@@ -93,4 +92,32 @@ public class SearchFragment extends Fragment {
 
     }
 
+    private void search() {
+//        String shoesId = etShoesName.getText().toString();
+
+        ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
+
+        Call<List<Shoes>> listCall = shoesAPI.getShoe();
+        listCall.enqueue(new Callback<List<Shoes>>() {
+            @Override
+            public void onResponse(Call<List<Shoes>> call, Response<List<Shoes>> response) {
+                if (!response.isSuccessful()){
+//                    use snackbar here
+                    Toast.makeText(getActivity(), "Code : "+ response.code() , Toast.LENGTH_SHORT).show();
+                }
+                List<Shoes> items =  response.body();
+                ShoesAdapter shoesAdapter = new ShoesAdapter(items,getActivity());
+                recyclerViewListShoes.setAdapter(shoesAdapter);
+                recyclerViewListShoes.setLayoutManager(new LinearLayoutManager(getActivity()));
+            }
+
+            @Override
+            public void onFailure(Call<List<Shoes>> call, Throwable t) {
+                Toast.makeText(getActivity(), "Error : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onFailure:  "  + t.getLocalizedMessage());
+            }
+        });
+    }
 }
+
+

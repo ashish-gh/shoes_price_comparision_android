@@ -38,10 +38,13 @@ public interface ShoesAPI {
     Call<List<Shoes>> getShoes();
 
     @DELETE
-    Call<Void> deleteShoes(@Field("shoedId") int shoesId);
+    Call<Void> deleteShoes(@Field("shoesId") int shoesId);
 
     @PUT("api/shoes")
     Call<Void> updateShoes(@Body Shoes shoes);
+
+    @GET("api/shoes/:shoesId")
+    Call<List<Shoes>> getShoe();
 
 
 //----------------------------------------
@@ -66,8 +69,6 @@ public interface ShoesAPI {
 //    Call<ImageResponse> uploadImage(@Header("Cookie") String cookie, @Part MultipartBody.Part img);
 
     // get all items
-    @GET("shoes")
-    Call<List<ClipData.Item>> getAllShoes(@Header("Cookie") String cookie);
 
     //  for login
 //    @FormUrlEncoded
