@@ -13,10 +13,45 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <View
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="#ffe6e6" />
+
+        <TextView
+            android:id="@+id/tvShoesBrandDescription"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Brand Name"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/tvShoesNameDescription"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Shoes Name"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="25sp"/>
+
+        <TextView
+            android:id="@+id/tvShoesPriceDescription"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="Price"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="25sp"/>
+
 
         <TextView
             android:id="@+id/tvPriceDescription1"
@@ -58,20 +93,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="5dp">
-        />
-
-        <TextView
-
-            android:id="@+id/tvReviewDescription"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:text="Reviews"
-            android:textSize="20sp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:background="?android:attr/selectableItemBackground"
-
             />
+
+            <TextView
+
+                android:id="@+id/tvReviewDescription"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:text="Reviews"
+                android:textSize="20sp"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:background="?android:attr/selectableItemBackground"
+
+                />
         </android.support.v7.widget.CardView>
 
         <View
@@ -88,7 +123,7 @@
             android:layout_marginRight="10dp"
             android:background="#eee"
             app:cardCornerRadius="10dp">
-                />
+            />
             <TextView
                 android:id="@+id/contact"
                 android:layout_width="match_parent"
@@ -97,10 +132,10 @@
                 android:textSize="35sp"
                 />
             <include
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    layout="@layout/activity_maps"
-                    />
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                layout="@layout/activity_maps"
+                />
         </android.support.v7.widget.CardView>
     </LinearLayout>
 

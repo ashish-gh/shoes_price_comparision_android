@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -71,9 +72,14 @@ public class ReviewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
 
+        Bundle bundle = getIntent().getExtras();
+        bundle.getInt("shoesId");
+
+        Log.d("tag", "value : "+ bundle.getInt("shoesId"));
+
 //        setting review inside recyclerview
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
-        Call<List<Review>> listCall = shoesAPI.getReviews();
+        Call<List<Review>> listCall = shoesAPI.getReviewsByShoes(bundle.getInt("shoesId"));
         listCall.enqueue(new Callback<List<Review>>() {
             @Override
             public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {

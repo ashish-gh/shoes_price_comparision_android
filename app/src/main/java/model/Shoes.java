@@ -1,7 +1,7 @@
 package model;
 
 public class Shoes {
-    private int id;
+    private int itemId;
     private String shoesBrand;
     private String shoesName;
     private float shoesPrice;
@@ -16,12 +16,12 @@ public class Shoes {
         this.shoesImageName = shoesImageName;
     }
 
-    public int getId() {
-        return id;
+    public int getItemId() {
+        return itemId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
     }
 
     public String getShoesBrand() {

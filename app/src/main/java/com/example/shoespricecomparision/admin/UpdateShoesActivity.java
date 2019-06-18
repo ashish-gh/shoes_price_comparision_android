@@ -42,6 +42,7 @@ import url.Url;
 public class UpdateShoesActivity extends AppCompatActivity {
 
     int onStartCount = 0;
+    private int shoesId;
 
     private EditText etShoeName, etShoePrice, etShoeDescription;
     private Spinner spnBrand;
@@ -111,16 +112,19 @@ public class UpdateShoesActivity extends AppCompatActivity {
             imgShoe.setImageResource(bundle.getInt("shoesImage"));
 //            change the url to get image
             try {
-                url = new URL("http://10.0.2.2:8000/uploads/"+bundle.getString("shoesImage"));
+                url = new URL("http://10.0.2.2:8005/uploads/"+bundle.getString("shoesImage"));
                 imgShoe.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-//            setting values in the edit text
+//
+////            setting values in the edit text
             etShoeName.setText(bundle.getString("shoesName"));
-            etShoePrice.setText(bundle.getInt("shoesPrice"));
+            etShoePrice.setText(Float.toString(bundle.getFloat("shoesPrice")));
             etShoeDescription.setText("shoesDescription");
+
+            shoesId = bundle.getInt("shoesId");
+
         }
     }
 
@@ -197,7 +201,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
 
         ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
 
-        Call<Void> itemsCall = shoesAPI.updateShoes(shoes);
+        Call<Void> itemsCall = shoesAPI.updateShoes(shoesId, shoes);
 
         itemsCall.enqueue(new Callback<Void>() {
             @Override
@@ -207,7 +211,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
                     Toast.makeText(UpdateShoesActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(UpdateShoesActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateShoesActivity.this, "Successfully Updated",Toast.LENGTH_LONG).show();
             }
 
             @Override

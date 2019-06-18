@@ -71,6 +71,9 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesHolder>
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ShoesDescriptionActivity.class);
+
+                intent.putExtra("shoeId", shoes.getItemId());
+                intent.putExtra("image",shoes.getShoesImageName());
                 intent.putExtra("shoesBrand",shoes.getShoesBrand());
                 intent.putExtra("shoesName",shoes.getShoesName());
                 intent.putExtra("shoesPrice",shoes.getShoesPrice());

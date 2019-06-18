@@ -19,6 +19,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public interface ShoesAPI {
     //  using object
@@ -40,8 +41,8 @@ public interface ShoesAPI {
     @DELETE
     Call<Void> deleteShoes(@Field("shoesId") int shoesId);
 
-    @PUT("api/shoes")
-    Call<Void> updateShoes(@Body Shoes shoes);
+    @PUT("api/shoes/{shoesId}")
+    Call<Void> updateShoes(@Path("shoesId")int shoesId, @Body Shoes shoes);
 
     @GET("api/shoes/:shoesId")
     Call<List<Shoes>> getShoe();
@@ -56,6 +57,9 @@ public interface ShoesAPI {
     @POST("api/addReview")
     Call<Void> addReview(@Body Review review);
 
+
+    @GET("api/review/{shoesId}")
+    Call<List<Review>> getReviewsByShoes(@Path("shoesId") int shoesId);
 
 
 

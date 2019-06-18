@@ -3,8 +3,10 @@ package com.example.shoespricecomparision;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -16,13 +18,22 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 public class ShoesDescriptionActivity extends AppCompatActivity {
 
     int onStartCount = 0;
     private Toolbar toolbar;
-    private TextView tvNameDes,tvReviewDescription;
+    private TextView tvNameDes,tvReviewDescription, tvShoesBrandDescription, tvShoesNameDescription, tvShoesPriceDescription;
+
+    private int shoesId;
+    private ImageView imgDisplayHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +52,16 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         }
 
 
+
+        imgDisplayHeader = findViewById(R.id.header);
         tvNameDes = findViewById(R.id.tvNameDescription);
         tvReviewDescription = findViewById(R.id.tvReviewDescription);
+
+        tvShoesBrandDescription = findViewById(R.id.tvShoesBrandDescription);
+        tvShoesNameDescription = findViewById(R.id.tvShoesNameDescription);
+        tvShoesPriceDescription  = findViewById(R.id.tvShoesPriceDescription);
+
+
 
 //      setting toolbar for this activity
         toolbar = findViewById(R.id.toolbar);
@@ -62,6 +81,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
 //                calling startActivity to set animation style
 
                 Intent intent = new Intent(ShoesDescriptionActivity.this,ReviewActivity.class);
+                intent.putExtra("shoesId", shoesId);
                 startActivity(intent);
                 finish();
             }
@@ -92,6 +112,37 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         int backgroundResource = typedArray.getResourceId(0, 0);
         tvNameDes.setBackgroundResource(backgroundResource);
 
+
+//      load shoes
+        strictMode();
+        URL url = null;
+
+        Bundle bundle = getIntent().getExtras();
+        shoesId = bundle.getInt("shoesId");
+
+        Toast.makeText(this, "shoesId" + shoesId, Toast.LENGTH_SHORT).show();
+        if (bundle != null) {
+            imgDisplayHeader.setImageResource(bundle.getInt("image"));
+
+            try {
+                url = new URL("http://10.0.2.2:8005/uploads/" + bundle.getString("image"));
+                imgDisplayHeader.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            tvShoesNameDescription.setText(bundle.getString("shoesName"));
+            tvShoesBrandDescription.setText(bundle.getString("shoesBrand"));
+            tvShoesPriceDescription.setText(String.valueOf(bundle.getString("shoesPrice")));
+
+        }
+
+        }
+
+
+
+    private void strictMode() {
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
     }
 
     //     onStart() is called when activity is visible to user

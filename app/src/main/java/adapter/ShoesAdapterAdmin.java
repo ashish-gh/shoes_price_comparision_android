@@ -74,7 +74,7 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
         shoesHolderAdmin.tvName.setText(shoes.getShoesName());
         shoesHolderAdmin.tvPrice.setText(Float.toString(shoes.getShoesPrice()));
         shoesHolderAdmin.tvDescription.setText(shoes.getShoesDescription());
-        shoesHolderAdmin.tvShoesId.setText(shoes.getId());
+//        shoesHolderAdmin.tvShoesId.setText(shoes.getItemId());
 
 //        to delete shoes
         shoesHolderAdmin.imgDeleteShoes.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,8 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(context, "You clicked yes button", Toast.LENGTH_SHORT).show();
-                        delete(shoes.getId());
+                        delete(shoes.getItemId()
+                        );
                     }
                 });
                 builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
@@ -105,7 +106,8 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UpdateShoesActivity.class);
-                intent.putExtra("shoesId", shoes.getId());
+                Toast.makeText(context, "value " + shoes.getItemId(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("shoesId", shoes.getItemId());
                 intent.putExtra("shoesBrand",shoes.getShoesBrand());
                 intent.putExtra("shoesName",shoes.getShoesName());
                 intent.putExtra("shoesPrice",shoes.getShoesPrice());
@@ -141,7 +143,7 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
 
     @Override
     public int getItemCount() {
-        return 0;
+        return shoesList.size();
     }
 
     public class ShoesHolderAdmin extends RecyclerView.ViewHolder
