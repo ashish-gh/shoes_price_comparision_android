@@ -38,8 +38,8 @@ public interface ShoesAPI {
     @GET("api/shoes")
     Call<List<Shoes>> getShoes();
 
-    @DELETE
-    Call<Void> deleteShoes(@Field("shoesId") int shoesId);
+    @DELETE("api/shoes/{shoesId}")
+    Call<Void> deleteShoes(@Path("shoesId") int shoesId);
 
     @PUT("api/shoes/{shoesId}")
     Call<Void> updateShoes(@Path("shoesId")int shoesId, @Body Shoes shoes);

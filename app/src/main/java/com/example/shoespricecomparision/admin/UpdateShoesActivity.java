@@ -44,8 +44,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
     int onStartCount = 0;
     private int shoesId;
 
-    private EditText etShoeName, etShoePrice, etShoeDescription;
-    private Spinner spnBrand;
+    private EditText etBrand, etShoeName, etShoePrice, etShoeDescription;
     private ImageView imgShoe, imgBackUpdateShoes;
     private Button btnUpdateShoe;
     String imagePath;
@@ -72,7 +71,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
         etShoeName = findViewById(R.id.etUpdateShoesName);
         etShoePrice = findViewById(R.id.etUpdateShoesPrice);
         etShoeDescription = findViewById(R.id.etUpdateShoesDescription);
-        spnBrand  = findViewById(R.id.spnBrandUpdate);
+        etBrand = findViewById(R.id.etUpdateShoesBrand);
         imgShoe = findViewById(R.id.imgUpdateShoes);
         imgBackUpdateShoes = findViewById(R.id.imgBackUpdateShoes);
         btnUpdateShoe = findViewById(R.id.btnUpdateShoes);
@@ -119,6 +118,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
             }
 //
 ////            setting values in the edit text
+            etBrand.setText(bundle.getString("shoesBrand"));
             etShoeName.setText(bundle.getString("shoesName"));
             etShoePrice.setText(Float.toString(bundle.getFloat("shoesPrice")));
             etShoeDescription.setText("shoesDescription");

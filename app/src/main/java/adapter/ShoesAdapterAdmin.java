@@ -86,9 +86,7 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
                 builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(context, "You clicked yes button", Toast.LENGTH_SHORT).show();
-                        delete(shoes.getItemId()
-                        );
+                        delete(shoes.getItemId());
                     }
                 });
                 builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
@@ -129,8 +127,10 @@ public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.S
                 if (!response.isSuccessful()){
                     Toast.makeText(context,"Code" + response.code(),Toast.LENGTH_LONG).show();
                     return;
+                }else {
+                    Toast.makeText(context, "Successfully Deleted",Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(context, "Successfully Added",Toast.LENGTH_LONG).show();
+
             }
 
             @Override

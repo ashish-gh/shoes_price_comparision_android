@@ -2,6 +2,7 @@ package com.example.shoespricecomparision.admin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class ListShoesActivity extends AppCompatActivity {
 //    private ImageView imgUpdateShoes;
 //    private ImageView imgDeleteShoes;
 
+    private ImageView imgBackListShoes;
 
 
     @Override
@@ -53,6 +55,15 @@ public class ListShoesActivity extends AppCompatActivity {
 //            }
 //        });
 
+        imgBackListShoes = findViewById(R.id.imgBackListShoes);
+        imgBackListShoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListShoesActivity.this, AdminDashboardActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
 

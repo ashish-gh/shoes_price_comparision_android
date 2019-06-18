@@ -33,17 +33,17 @@
             android:text="@string/select_brand"
             android:background="#ddd"
             android:textSize="16sp" />
-        <Spinner
-            android:id="@+id/spnBrandUpdate"
+        <EditText
+            android:id="@+id/etUpdateShoesBrand"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="1"
+            android:hint="Enter Brand"
             android:background="@drawable/drawable_edittext"
             android:inputType="text"
             android:paddingLeft="8dp"
             android:textSize="16sp"
-            >
-        </Spinner>
+           />
     </LinearLayout>
 
     <LinearLayout
