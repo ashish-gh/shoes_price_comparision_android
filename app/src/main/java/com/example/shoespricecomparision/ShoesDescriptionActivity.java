@@ -15,6 +15,7 @@ import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+
+import url.Url;
 
 public class ShoesDescriptionActivity extends AppCompatActivity {
 
@@ -81,7 +84,9 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
 //                calling startActivity to set animation style
 
                 Intent intent = new Intent(ShoesDescriptionActivity.this,ReviewActivity.class);
-                intent.putExtra("shoesId", shoesId);
+                Toast.makeText(ShoesDescriptionActivity.this, "before going shoesId :" + shoesId, Toast.LENGTH_SHORT).show();
+                Log.d("tag" , "new value here we have" + shoesId);
+                intent.putExtra("shoeId : ", shoesId);
                 startActivity(intent);
                 finish();
             }
@@ -118,7 +123,8 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         URL url = null;
 
         Bundle bundle = getIntent().getExtras();
-        shoesId = bundle.getInt("shoesId");
+        shoesId = bundle.getInt("shoeId");
+        Url.shoesId = bundle.getInt("shoeId");
 
         Toast.makeText(this, "shoesId" + shoesId, Toast.LENGTH_SHORT).show();
         if (bundle != null) {

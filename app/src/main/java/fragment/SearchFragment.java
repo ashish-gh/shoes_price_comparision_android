@@ -38,8 +38,8 @@ import static android.support.constraint.Constraints.TAG;
 public class SearchFragment extends Fragment {
 
     private RecyclerView recyclerViewListShoes;
-//    private EditText etShoesName;
-//    private Button btnSearchShoes;
+    private EditText etSearchShoes;
+    private Button btnSearchShoes;
 
 
     public SearchFragment() {
@@ -55,15 +55,16 @@ public class SearchFragment extends Fragment {
 
         recyclerViewListShoes = (RecyclerView) view.findViewById(R.id.recyclerViewListShoes);
 
-//        etShoesName = view.findViewById(R.id.etSearchShoes);
-//        btnSearchShoes = view.findViewById(R.id.btnSearchShoes);
+        etSearchShoes = view.findViewById(R.id.etSearchShoes);
+        btnSearchShoes = view.findViewById(R.id.btnSearchShoes);
 
-//        btnSearchShoes.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                search();
-//            }
-//        });
+        btnSearchShoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search();
+            }
+        });
+
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
@@ -93,11 +94,12 @@ public class SearchFragment extends Fragment {
     }
 
     private void search() {
-//        String shoesId = etShoesName.getText().toString();
+//        validate if shoes name is empty or not
+        String shoesName = etSearchShoes.getText().toString();
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
-        Call<List<Shoes>> listCall = shoesAPI.getShoe();
+        Call<List<Shoes>> listCall = shoesAPI.getShoeByName(shoesName);
         listCall.enqueue(new Callback<List<Shoes>>() {
             @Override
             public void onResponse(Call<List<Shoes>> call, Response<List<Shoes>> response) {

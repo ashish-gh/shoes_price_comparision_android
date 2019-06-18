@@ -47,6 +47,12 @@ public interface ShoesAPI {
     @GET("api/shoes/:shoesId")
     Call<List<Shoes>> getShoe();
 
+    @GET("api/shoes/{shoesName}")
+    Call<List<Shoes>> getShoeByName(@Path("shoesName") String shoesName);
+
+
+
+
 
 //----------------------------------------
 //for review
@@ -54,12 +60,14 @@ public interface ShoesAPI {
     @GET("api/review")
     Call<List<Review>> getReviews();
 
-    @POST("api/addReview")
+    @POST("api/review")
     Call<Void> addReview(@Body Review review);
 
 
-    @GET("api/review/{shoesId}")
-    Call<List<Review>> getReviewsByShoes(@Path("shoesId") int shoesId);
+
+//
+//    @GET("api/review/{shoesId}")
+//    Call<List<Review>> getReviewsByShoes(@Path("shoesId") int shoesId);
 
 
 

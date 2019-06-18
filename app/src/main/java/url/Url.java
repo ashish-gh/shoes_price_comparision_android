@@ -9,6 +9,8 @@ public class Url {
             "/";
     public static String Cookie="";
 
+    public static int shoesId;
+
     public static Retrofit getInstance(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Url.BASE_URL)

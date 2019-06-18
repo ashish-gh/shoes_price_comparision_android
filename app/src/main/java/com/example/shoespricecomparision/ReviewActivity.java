@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.shoespricecomparision.admin.AddItemActivity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -72,14 +74,10 @@ public class ReviewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
 
-        Bundle bundle = getIntent().getExtras();
-        bundle.getInt("shoesId");
-
-        Log.d("tag", "value : "+ bundle.getInt("shoesId"));
 
 //        setting review inside recyclerview
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
-        Call<List<Review>> listCall = shoesAPI.getReviewsByShoes(bundle.getInt("shoesId"));
+        Call<List<Review>> listCall = shoesAPI.getReviews();
         listCall.enqueue(new Callback<List<Review>>() {
             @Override
             public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
@@ -113,10 +111,14 @@ public class ReviewActivity extends AppCompatActivity {
 
         String reviews = etReview.getText().toString();
         String userName = "ashish";
-        int shoesId = 1;
-        String reviewDate = "2019-06-03";
 
-        Review review  = new Review(reviews,userName,shoesId,reviewDate);
+//        for date
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        Toast.makeText(this, "this is date" + dateFormat.format(date), Toast.LENGTH_LONG).show();
+
+
+        Review review  = new Review(reviews,userName,Url.shoesId,dateFormat.format(date));
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Url.BASE_URL)
@@ -134,8 +136,10 @@ public class ReviewActivity extends AppCompatActivity {
                     Toast.makeText(ReviewActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
                     return;
                 }
-                Toast.makeText(ReviewActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
-            }
+                else{
+                    Toast.makeText(ReviewActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
+                }
+                 }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
