@@ -5,9 +5,12 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/linearFirst"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1"
+        >
 
         <TextView
             android:layout_width="300dp"
@@ -21,8 +24,15 @@
             android:id="@+id/imgProfile"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_account" />
-
+            android:src="@drawable/ic_account"
+                />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/linearFirst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
 
     </LinearLayout>
 
