@@ -49,7 +49,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.cardAddShops:
-                Intent intentAddShops= new Intent(this,ListShoesActivity.class);
+                Intent intentAddShops= new Intent(this,AddShopActivity.class);
                 startActivity(intentAddShops);
                 finish();
                 break;

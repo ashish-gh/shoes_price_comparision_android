@@ -7,6 +7,7 @@ import java.util.List;
 import model.ImageResponse;
 import model.Review;
 import model.Shoes;
+import model.Store;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -50,7 +51,11 @@ public interface ShoesAPI {
     @GET("api/shoes/{shoesName}")
     Call<List<Shoes>> getShoeByName(@Path("shoesName") String shoesName);
 
+//----------------------------------------
+//    for store
 
+    @POST("api/store")
+    Call<Void> addStores(@Body Store store);
 
 
 

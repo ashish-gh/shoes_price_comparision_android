@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shoespricecomparision">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".admin.AddShopActivity"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -37,25 +36,24 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".ReviewActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".admin.UpdateShoesActivity"></activity>
-        <!--<activity android:name=".admin.ListShoesActivity" />-->
-        <!--<activity android:name=".admin.AddItemActivity" /> &lt;!&ndash; <activity android:name=".admin.AdminDashboardActivity" /> &ndash;&gt;-->
-        <!--<activity android:name=".MainActivity" />-->
+        <activity android:name=".admin.UpdateShoesActivity" /> <!-- <activity android:name=".admin.ListShoesActivity" /> -->
+        <!-- <activity android:name=".admin.AddItemActivity" /> &lt;!&ndash; <activity android:name=".admin.AdminDashboardActivity" /> &ndash;&gt; -->
+        <!-- <activity android:name=".MainActivity" /> -->
         <activity
             android:name=".ShoesDescriptionActivity"
             android:label="@string/title_activity_shoes_description"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".admin.AdminDashboardActivity" />
+        <activity android:name=".SplashActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".admin.AdminDashboardActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

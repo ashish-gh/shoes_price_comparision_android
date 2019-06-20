@@ -46,12 +46,17 @@
     <string name="enter_shoe_price">Price</string>
     <string name="enter_shoe_description">Description</string>
     <string name="btn_add_shoe">Save</string>
-    <string name="select_shoe_image">Select Image</string>
+    <string name="select_shoe">Select image</string>
+
+    <!--Add Shop-->
+    <string name="enter_shop_name">Shop Name</string>
+    <string name="shop_latitude">Latitude</string>
+    <string name="shop_longitude">Longitude</string>
+    <string name="btn_add_shop">Save</string>
 
 
     <!--Update Item-->
     <string name="btn_update_shoes">Update</string>
-
 
 
     <!--Bottom bottom_nav_menu-->

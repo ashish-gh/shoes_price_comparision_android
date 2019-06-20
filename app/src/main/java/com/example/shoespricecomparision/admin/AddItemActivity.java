@@ -128,7 +128,7 @@ public class AddItemActivity extends AppCompatActivity {
 
 
     private void save() {
-//        SaveImageOnly();
+        SaveImageOnly();
         String shoesBrand = "Addidas";
         String shoesName = etShoeName.getText().toString();
         float shoesPrice = Float.parseFloat(etShoePrice.getText().toString());

@@ -9,7 +9,9 @@ public class Url {
             "/";
     public static String Cookie="";
 
-    public static int shoesId;
+    public static int shoesId ;
+
+    public static int userId;
 
     public static Retrofit getInstance(){
         Retrofit retrofit = new Retrofit.Builder()
