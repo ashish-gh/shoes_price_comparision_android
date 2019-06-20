@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.AddShopActivity"></activity>
+        <activity android:name=".admin.ListStoreActivity"></activity>
+        <activity android:name=".admin.AddShopActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

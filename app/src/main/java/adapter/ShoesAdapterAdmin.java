@@ -31,7 +31,7 @@ import retrofit2.Response;
 import shoesAPI.ShoesAPI;
 import url.Url;
 
-public class ShoesAdapterAdmin extends  RecyclerView.Adapter<ShoesAdapterAdmin.ShoesHolderAdmin>{
+public class ShoesAdapterAdmin extends RecyclerView.Adapter<ShoesAdapterAdmin.ShoesHolderAdmin>{
 
     private List<Shoes> shoesList;
     private Context context;

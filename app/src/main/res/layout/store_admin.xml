@@ -15,27 +15,14 @@
         android:layout_margin="2dp"
         >
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgShoesAdmin"
-            android:layout_width="85dp"
-            android:layout_height="match_parent"
-            />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="85dp"
             >
 
-            <TextView
-                android:id="@+id/tvShoesId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible"
-                />
 
             <TextView
-                android:id="@+id/tvShoesBrandAdmin"
+                android:id="@+id/tvStoreNameAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -43,52 +30,43 @@
                 android:textSize="20sp"
                 />
             <TextView
-                android:id="@+id/tvShoesNameAdmin"
+                android:id="@+id/tvStoreLatitudeAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_below="@id/tvShoesBrandAdmin"
+                android:layout_below="@id/tvStoreNameAdmin"
                 android:hint="Item Name"
                 android:textSize="15sp"
                 />
 
             <TextView
-                android:id="@+id/tvShoesPriceAdmin"
+                android:id="@+id/tvStoreLongitudeAdmin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvShoesNameAdmin"
+                android:layout_below="@+id/tvStoreLatitudeAdmin"
                 android:layout_marginStart="20dp"
                 android:hint="Price"
                 android:textSize="15sp"
                 />
 
-            <TextView
-                android:id="@+id/tvDescriptionAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvShoesPriceAdmin"
-                android:layout_marginStart="20dp"
-                android:hint="Description"
-                android:textSize="15sp"
-                />
 
             <ImageView
-                android:id="@+id/imgUpdateShoes"
+                android:id="@+id/imgUpdateStore"
                 android:padding="5dp"
                 android:src="@drawable/ic_update"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="100dp"
-                android:layout_toRightOf="@id/tvShoesBrandAdmin"
+                android:layout_toRightOf="@id/tvStoreNameAdmin"
                 />
 
             <ImageView
-                android:id="@+id/imgDeleteShoes"
+                android:id="@+id/imgDeleteStore"
                 android:padding="5dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="231sp"
-                android:layout_below="@id/imgUpdateShoes"
+                android:layout_below="@id/imgUpdateStore"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_delete_forever"
                 />

@@ -57,6 +57,17 @@ public interface ShoesAPI {
     @POST("api/store")
     Call<Void> addStores(@Body Store store);
 
+    @GET("api/store")
+    Call<List<Store>> getStores();
+
+    @GET("api/store/:storeId")
+    Call<List<Store>> getStoreById();
+
+    @DELETE("api/store/{storeId}")
+    Call<Void> deleteStore(@Path("storeId") int storeId);
+
+
+
 
 
 //----------------------------------------

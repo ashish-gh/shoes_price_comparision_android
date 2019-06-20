@@ -53,6 +53,11 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 startActivity(intentAddShops);
                 finish();
                 break;
+            case R.id.cardListShops:
+                Intent intentListShops= new Intent(this,ListStoreActivity.class);
+                startActivity(intentListShops);
+                finish();
+                break;
 
             case R.id.cardLogout:
                 logout();
