@@ -10,6 +10,7 @@ public class Url {
     public static String Cookie="";
 
     public static int shoesId ;
+    public static int storeId ;
 
     public static int userId;
 

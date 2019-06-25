@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.shoespricecomparision.R;
 import com.example.shoespricecomparision.admin.UpdateShoesActivity;
+import com.example.shoespricecomparision.admin.UpdateStoreActivity;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -86,20 +87,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreHolder>
         });
 
 //        to update store details
-//        storeHolder.imgUpdateStore.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, UpdateShoesActivity.class);
-//                Toast.makeText(context, "value " + shoes.getItemId(), Toast.LENGTH_SHORT).show();
-//                intent.putExtra("shoesId", shoes.getItemId());
-//                intent.putExtra("shoesBrand",shoes.getShoesBrand());
-//                intent.putExtra("shoesName",shoes.getShoesName());
-//                intent.putExtra("shoesPrice",shoes.getShoesPrice());
-//                intent.putExtra("shoesDescription",shoes.getShoesDescription());
-//                intent.putExtra("shoesImage",shoes.getShoesImageName());
-//                context.startActivity(intent);
-//            }
-//        });
+        storeHolder.imgUpdateStore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, UpdateStoreActivity.class);
+                Toast.makeText(context, "value " + store.getStoreId(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("storeId", store.getStoreId());
+                intent.putExtra("storeName",store.getStoreName());
+                intent.putExtra("storeLatitude",store.getLatitude());
+                intent.putExtra("storeLongitude",store.getLongitude());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -25,6 +25,8 @@ import url.Url;
 
 public class ListStoreActivity extends AppCompatActivity {
 
+    int onStartCount = 0;
+
     private RecyclerView recyclerViewListStoreAdmin;
 
 //    private ImageView imgUpdateShoes;
@@ -36,6 +38,16 @@ public class ListStoreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_store);
+
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+        } else // already created so reverse animation
+        {
+            onStartCount = 2;
+        }
 
         imgBackListStore = findViewById(R.id.imgBackListStore);
         imgBackListStore.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +81,20 @@ public class ListStoreActivity extends AppCompatActivity {
                 Toast.makeText(ListStoreActivity.this, "Error : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (onStartCount % 2 == 0 ) {
+            onStartCount++;
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+
+        } else {
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+            onStartCount++;
+        }
     }
 }

@@ -66,6 +66,10 @@ public interface ShoesAPI {
     @DELETE("api/store/{storeId}")
     Call<Void> deleteStore(@Path("storeId") int storeId);
 
+    @PUT("api/store/{storeId}")
+    Call<Void> updateStore(@Path("storeId")int storeId, @Body Store store);
+
+
 
 
 

@@ -14,23 +14,39 @@ import com.example.shoespricecomparision.R;
 
 public class AdminDashboardActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private CardView cardViewAddItem,cardViewListItem,cardViewAddShops, cardViewListShops, cardViewListUser;
+     private int onStartCount = 1;
+
+    private CardView cardViewAddItem,cardViewListItem,cardViewAddShops, cardViewListShops, cardViewListUser, cardViewLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
+
+
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+        } else // already created so reverse animation
+        {
+            onStartCount = 2;
+        }
+
 
         cardViewAddItem = findViewById(R.id.cardAddItem);
         cardViewListItem = findViewById(R.id.cardListItem);
         cardViewAddShops = findViewById(R.id.cardAddShops);
         cardViewListShops= findViewById(R.id.cardListShops);
         cardViewListUser = findViewById(R.id.cardListUsers);
+        cardViewLogOut = findViewById(R.id.cardLogOut);
 
         cardViewAddItem.setOnClickListener(this);
         cardViewListItem.setOnClickListener(this);
         cardViewAddShops.setOnClickListener(this);
         cardViewListShops.setOnClickListener(this);
         cardViewListUser.setOnClickListener(this);
+        cardViewLogOut.setOnClickListener(this);
     }
 
     @Override
@@ -59,7 +75,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
 
-            case R.id.cardLogout:
+            case R.id.cardLogOut:
                 logout();
                 break;
         }
@@ -89,7 +105,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
         builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
             }
         });
 
