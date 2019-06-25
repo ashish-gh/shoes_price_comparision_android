@@ -185,7 +185,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
     }
 
     private void update() {
-//        SaveImageOnly();
+        SaveImageOnly();
         String shoesBrand = "Addidas";
         String shoesName = etShoeName.getText().toString();
         float shoesPrice = Float.parseFloat(etShoePrice.getText().toString());
