@@ -1,5 +1,7 @@
 package com.example.shoespricecomparision.admin;
 
+import android.app.Notification;
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -8,6 +10,8 @@ import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +27,7 @@ import com.example.shoespricecomparision.R;
 import java.io.File;
 import java.io.IOException;
 
+import channel.CreateChannel;
 import model.ImageResponse;
 import model.Shoes;
 import okhttp3.MediaType;
@@ -44,6 +49,12 @@ public class AddItemActivity extends AppCompatActivity {
     String imagePath;
     String imageName;
 
+    private int id =1;
+
+    CreateChannel createChannel = new CreateChannel(this);
+    private NotificationManagerCompat notificationManagerCompat;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +68,12 @@ public class AddItemActivity extends AppCompatActivity {
         imgShoe = findViewById(R.id.imgAddShoe);
         imgBackAddItem = findViewById(R.id.imgBackAddItem);
         btnAddShoe = findViewById(R.id.btnAddShoe);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+
+//        channel to handle notification
+        createChannel.createChannel();
+
 
 //        intent to go back to admin page
         imgBackAddItem.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +99,8 @@ public class AddItemActivity extends AppCompatActivity {
                 browseImage();
             }
         });
+
+
     }
 
 //    browse function to search image
@@ -155,6 +174,7 @@ public class AddItemActivity extends AppCompatActivity {
                     return;
                 }
                 Toast.makeText(AddItemActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
+                addItemNotification();
 
             }
 
@@ -163,6 +183,20 @@ public class AddItemActivity extends AppCompatActivity {
                 Toast.makeText(AddItemActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+//    notification to add item
+
+    private void addItemNotification() {
+        Notification notification = new NotificationCompat.Builder(this,CreateChannel.CHANNEL_1)
+                .setSmallIcon(R.drawable.ic_message)
+                .setContentTitle("Item Added")
+                .setContentText("Item Added successfully")
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(id, notification);
+        id++;
+
     }
 
     private void SaveImageOnly() {
@@ -176,7 +210,6 @@ public class AddItemActivity extends AppCompatActivity {
         Call<ImageResponse> responseBodyCall = shoesAPI.uploadImage(body);
 
         StrictMode();
-
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
             //After saving an image, retrieve the current name of the image
