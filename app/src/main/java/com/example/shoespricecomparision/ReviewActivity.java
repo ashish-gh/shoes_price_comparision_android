@@ -2,6 +2,7 @@ package com.example.shoespricecomparision;
 
 import android.content.Intent;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -102,15 +103,39 @@ public class ReviewActivity extends AppCompatActivity {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+//                check if user is registered or not
+        if (Url.user == null){
+            Intent intent = new Intent(ReviewActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }else
+        {
+            save();
+        }
             }
         });
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        Intent intent = new Intent(ReviewActivity.this, ShoesDescriptionActivity.class);
+        startActivity(intent);
+        finish();
+        return  true;
+    }
+
+
+
+
     private void save() {
 
+        int id = Url.shoesId;
         String reviews = etReview.getText().toString();
         String userName = "ashish";
+
+
+
 
 //        for date
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -163,15 +188,6 @@ public class ReviewActivity extends AppCompatActivity {
     }
 
 
-//to go back to the ShoesDescriptionPage
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        Intent intent = new Intent(ReviewActivity.this, ShoesDescriptionActivity.class);
-        startActivity(intent);
-        finish();
-        return  true;
-    }
 
 
 

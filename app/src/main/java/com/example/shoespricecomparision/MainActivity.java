@@ -15,6 +15,7 @@ import fragment.SettingFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    int onStartCount=1;
     private BottomNavigationView mBottomNavigationView;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -27,6 +28,21 @@ public class MainActivity extends AppCompatActivity {
 
 //        tabLayout = findViewById(R.id.tabLayout);
 //        viewPager = findViewById(R.id.viewPager);
+
+        onStartCount = 1;
+        if (savedInstanceState == null) // 1st time
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+            onStartCount++;
+        } else // already created so reverse animation
+        {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+
+            onStartCount = 2;
+        }
+
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
         setupBottomNavigation();

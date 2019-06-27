@@ -13,17 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ddd">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#ddd"
-            >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ddd">
 
     <ImageView
         android:id="@+id/imgBackAddShop"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/img_logo_qr_height"
+        android:layout_height="@dimen/img_logo_qr_width"
         app:srcCompat="@drawable/ic_arrow_back"
         tools:ignore="VectorDrawableCompat"
         android:background="#ddd"/>
@@ -43,7 +44,7 @@
             android:layout_weight="1"
             android:text="@string/enter_shop_name"
             android:background="#ddd"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_xx_large" />
         <EditText
             android:id="@+id/etShopName"
             android:layout_width="match_parent"
@@ -53,7 +54,7 @@
             android:hint="Enter Shop Name"
             android:inputType="text"
             android:paddingLeft="8dp"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_xx_large" />
     </LinearLayout>
 
     <LinearLayout
@@ -70,7 +71,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/shop_latitude"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_xx_large"
             android:background="#ddd"
             />
 
@@ -84,7 +85,7 @@
             android:inputType="numberDecimal"
             android:paddingLeft="8dp"
             android:paddingTop="10dp"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_xx_large" />
 
     </LinearLayout>
 
@@ -102,7 +103,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/shop_latitude"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_xx_large"
             android:background="#ddd"
             />
 
@@ -116,7 +117,7 @@
             android:inputType="numberDecimal"
             android:paddingLeft="8dp"
             android:paddingTop="10dp"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_xx_large" />
 
     </LinearLayout>
 
@@ -129,7 +130,8 @@
         android:background="@drawable/drawable_button"
         android:text="@string/btn_add_shoe"
         android:textColor="#FFFFFF"
-        android:textSize="18sp" />
-        </LinearLayout>
+        android:textSize="@dimen/text_size_xx_large" />
+    </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

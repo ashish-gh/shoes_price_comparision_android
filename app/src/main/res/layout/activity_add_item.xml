@@ -8,8 +8,16 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".admin.AddItemActivity">
-
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ddd">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ddd"
+            >
     <ImageView
         android:id="@+id/imgBackAddItem"
         android:layout_width="30dp"
@@ -173,5 +181,7 @@
         android:text="@string/btn_add_shoe"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

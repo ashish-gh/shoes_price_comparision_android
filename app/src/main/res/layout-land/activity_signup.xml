@@ -7,6 +7,16 @@
     android:fitsSystemWindows="true"
     tools:context=".SignupActivity">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ddd">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#ddd"
+        >
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -46,6 +56,7 @@
             android:textColor="@color/colorTransparentPink"
             android:maxLines="3"
             android:singleLine="true"/>
+
         <EditText
             android:id="@+id/passwordConfirmSign"
             android:layout_width="match_parent"
@@ -54,9 +65,9 @@
             android:hint="@string/hint_password_confirm"
             android:imeOptions="actionUnspecified"
             android:inputType="textPassword"
-            android:textColor="@color/colorTransparentPink"
             android:maxLines="3"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:textColor="@color/colorTransparentPink" />
 
 
         <Button
@@ -91,4 +102,6 @@
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
         android:visibility="gone" />
+    </LinearLayout>
+    </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

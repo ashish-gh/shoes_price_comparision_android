@@ -2,6 +2,10 @@ package com.example.shoespricecomparision.admin;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,7 +18,8 @@ import com.example.shoespricecomparision.R;
 
 public class AdminDashboardActivity extends AppCompatActivity implements View.OnClickListener{
 
-     private int onStartCount = 1;
+    private SensorManager sensorManager;
+    private int onStartCount = 1;
 
     private CardView cardViewAddItem,cardViewListItem,cardViewAddShops, cardViewListShops, cardViewListUser, cardViewLogOut;
     @Override
@@ -47,6 +52,30 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
         cardViewListShops.setOnClickListener(this);
         cardViewListUser.setOnClickListener(this);
         cardViewLogOut.setOnClickListener(this);
+
+        logoutProximity();
+    }
+
+    private void logoutProximity() {
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+
+        SensorEventListener sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.values[0]  <= 4){
+                    Intent intentLogOut = new Intent(AdminDashboardActivity.this, MainActivity.class);
+                    startActivity(intentLogOut);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+        sensorManager.registerListener(sensorEventListener, sensor, sensorManager.SENSOR_DELAY_NORMAL);
     }
 
     @Override

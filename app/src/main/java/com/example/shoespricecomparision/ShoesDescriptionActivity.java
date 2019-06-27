@@ -47,10 +47,14 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
+                    R.anim.anim_slide_out_left);
+            onStartCount++;
         } else // already created so reverse animation
         {
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
+                    R.anim.anim_slide_out_right);
+
             onStartCount = 2;
         }
 
@@ -82,7 +86,6 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 //                calling startActivity to set animation style
-
                 Intent intent = new Intent(ShoesDescriptionActivity.this,ReviewActivity.class);
                 Toast.makeText(ShoesDescriptionActivity.this, "before going shoesId :" + shoesId, Toast.LENGTH_SHORT).show();
                 Log.d("tag" , "new value here we have" + shoesId);
@@ -91,6 +94,46 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+//       setting collapsing toolbar
+        collapsingToolbar();
+
+//        setting splash animation in textView
+        settingAnimation();
+
+
+//      load shoes
+        strictMode();
+        URL url = null;
+        Bundle bundle = getIntent().getExtras();
+        shoesId = bundle.getInt("shoeId");
+        Url.shoesId = bundle.getInt("shoeId");
+
+        Toast.makeText(this, "shoesId" + shoesId, Toast.LENGTH_SHORT).show();
+        if (bundle != null) {
+            imgDisplayHeader.setImageResource(bundle.getInt("image"));
+
+            try {
+                url = new URL("http://10.0.2.2:8005/uploads/" + bundle.getString("image"));
+                imgDisplayHeader.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            tvShoesNameDescription.setText(bundle.getString("shoesName"));
+            tvShoesBrandDescription.setText(bundle.getString("shoesBrand"));
+            tvShoesPriceDescription.setText(String.valueOf(bundle.getString("shoesPrice")));
+        }
+    }
+
+    private void settingAnimation() {
+        int[] attrs = new int[]{R.attr.selectableItemBackground};
+        TypedArray typedArray = this    .obtainStyledAttributes(attrs);
+        int backgroundResource = typedArray.getResourceId(0, 0);
+        tvNameDes.setBackgroundResource(backgroundResource);
+    }
+
+    private void collapsingToolbar() {
 
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
@@ -111,39 +154,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
             }
         });
 
-//        setting splash animation in textView
-        int[] attrs = new int[]{R.attr.selectableItemBackground};
-        TypedArray typedArray = this    .obtainStyledAttributes(attrs);
-        int backgroundResource = typedArray.getResourceId(0, 0);
-        tvNameDes.setBackgroundResource(backgroundResource);
-
-
-//      load shoes
-        strictMode();
-        URL url = null;
-
-        Bundle bundle = getIntent().getExtras();
-        shoesId = bundle.getInt("shoeId");
-        Url.shoesId = bundle.getInt("shoeId");
-
-        Toast.makeText(this, "shoesId" + shoesId, Toast.LENGTH_SHORT).show();
-        if (bundle != null) {
-            imgDisplayHeader.setImageResource(bundle.getInt("image"));
-
-            try {
-                url = new URL("http://10.0.2.2:8005/uploads/" + bundle.getString("image"));
-                imgDisplayHeader.setImageBitmap(BitmapFactory.decodeStream((InputStream) url.getContent()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            tvShoesNameDescription.setText(bundle.getString("shoesName"));
-            tvShoesBrandDescription.setText(bundle.getString("shoesBrand"));
-            tvShoesPriceDescription.setText(String.valueOf(bundle.getString("shoesPrice")));
-
-        }
-
-        }
-
+    }
 
 
     private void strictMode() {
@@ -166,6 +177,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
@@ -173,8 +185,8 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
         return  true;
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

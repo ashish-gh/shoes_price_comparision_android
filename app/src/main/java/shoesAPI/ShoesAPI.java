@@ -51,6 +51,15 @@ public interface ShoesAPI {
     @GET("api/shoes/{shoesName}")
     Call<List<Shoes>> getShoeByName(@Path("shoesName") String shoesName);
 
+//    for user
+
+    @DELETE("api/user/{userId}")
+    Call<Void> deleteUser(@Path("userId") int userId);
+
+
+
+
+
 //----------------------------------------
 //    for store
 
