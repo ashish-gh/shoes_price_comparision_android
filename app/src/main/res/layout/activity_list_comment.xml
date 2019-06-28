@@ -4,12 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".admin.ListUserActivity">
-
+    tools:context=".admin.ListCommentActivity">
 
     <ImageView
-        android:id="@+id/imgBackListUser"
+        android:id="@+id/imgBackListComment"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:srcCompat="@drawable/ic_arrow_back"
@@ -19,10 +17,15 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewListUsersAdmin"
+            android:id="@+id/recyclerViewListCommentAdmin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
     </FrameLayout>
+
+
+
 
 </LinearLayout>

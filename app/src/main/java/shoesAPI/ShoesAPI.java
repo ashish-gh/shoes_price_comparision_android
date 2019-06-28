@@ -8,6 +8,7 @@ import model.ImageResponse;
 import model.Review;
 import model.Shoes;
 import model.Store;
+import model.User;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -53,9 +54,11 @@ public interface ShoesAPI {
 
 //    for user
 
-    @DELETE("api/user/{userId}")
+    @DELETE("api/users/{userId}")
     Call<Void> deleteUser(@Path("userId") int userId);
 
+    @GET("api/users")
+    Call<List<User>> getUser();
 
 
 
@@ -92,6 +95,9 @@ public interface ShoesAPI {
     @POST("api/review")
     Call<Void> addReview(@Body Review review);
 
+
+    @DELETE("api/review/{reviewId}")
+    Call<Void> deleteReview(@Path("reviewId") int reviewId);
 
 
 //

@@ -21,9 +21,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.ListUserActivity"></activity>
+        <activity android:name=".admin.ListCommentActivity"></activity>
+        <activity android:name=".admin.ListUserActivity" />
         <activity android:name=".admin.UpdateStoreActivity" />
         <activity android:name=".admin.ListStoreActivity" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
@@ -31,7 +33,7 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".ReviewActivity"/>
+        <activity android:name=".ReviewActivity" />
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
         <activity android:name=".MainActivity" />
@@ -39,17 +41,15 @@
         <activity android:name=".SplashActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
-
         <activity android:name=".ShoesDescriptionActivity" />
-
         <activity android:name=".admin.AdminDashboardActivity">
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
     </application>
 
 </manifest>
