@@ -78,7 +78,7 @@ public class ReviewActivity extends AppCompatActivity {
 
 //        setting review inside recyclerview
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
-        Call<List<Review>> listCall = shoesAPI.getReviews();
+        Call<List<Review>> listCall = shoesAPI.getReviewsByShoes(Url.shoesId);
         listCall.enqueue(new Callback<List<Review>>() {
             @Override
             public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {

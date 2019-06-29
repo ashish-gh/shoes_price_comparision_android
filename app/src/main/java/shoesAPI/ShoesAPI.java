@@ -52,6 +52,11 @@ public interface ShoesAPI {
     @GET("api/shoes/{shoesName}")
     Call<List<Shoes>> getShoeByName(@Path("shoesName") String shoesName);
 
+    @GET("api/shoes/{shoesId}")
+    Call<List<Shoes>> getShoeById(@Path("shoesId") int shoesId);
+
+
+
 //    for user
 
     @DELETE("api/users/{userId}")
@@ -89,8 +94,8 @@ public interface ShoesAPI {
 //----------------------------------------
 //for review
 
-    @GET("api/review")
-    Call<List<Review>> getReviews();
+    @GET("api/review/{shoesId}")
+    Call<List<Review>> getReviewsByShoes(@Path("shoesId") int shoesId);
 
     @POST("api/review")
     Call<Void> addReview(@Body Review review);

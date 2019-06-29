@@ -100,7 +100,7 @@ public class SearchFragment extends Fragment {
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
-        Call<List<Shoes>> listCall = shoesAPI.getShoeByName(shoesName);
+        Call<List<Shoes>> listCall = shoesAPI.getShoeById(Integer.parseInt(shoesName));
         listCall.enqueue(new Callback<List<Shoes>>() {
             @Override
             public void onResponse(Call<List<Shoes>> call, Response<List<Shoes>> response) {

@@ -21,7 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.ListCommentActivity"></activity>
+        <activity android:name=".admin.ListCommentActivity" />
         <activity android:name=".admin.ListUserActivity" />
         <activity android:name=".admin.UpdateStoreActivity" />
         <activity android:name=".admin.ListStoreActivity" />
@@ -36,13 +36,13 @@
         <activity android:name=".ReviewActivity" />
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".admin.UpdateShoesActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".admin.AdminDashboardActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ShoesDescriptionActivity" />
-        <activity android:name=".admin.AdminDashboardActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
