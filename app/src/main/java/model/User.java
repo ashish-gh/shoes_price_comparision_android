@@ -5,14 +5,16 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String contact;
     private String password;
     private String profileImage;
     private String userType;
 
-    public User(String firstName, String lastName, String email, String password, String profileImage, String userType) {
+    public User(String firstName, String lastName, String email, String contact, String password, String profileImage, String userType) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.contact = contact;
         this.password = password;
         this.profileImage = profileImage;
         this.userType = userType;
@@ -72,5 +74,13 @@ public class User {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact= contact;
     }
 }

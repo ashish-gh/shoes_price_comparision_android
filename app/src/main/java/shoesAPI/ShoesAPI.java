@@ -46,6 +46,11 @@ public interface ShoesAPI {
     @PUT("api/shoes/{shoesId}")
     Call<Void> updateShoes(@Path("shoesId")int shoesId, @Body Shoes shoes);
 
+
+    @PUT("api/users/{userId}")
+    Call<Void> updateUser(@Path("userId")int userId, @Body User user);
+
+
     @GET("api/shoes/:shoesId")
     Call<List<Shoes>> getShoe();
 
@@ -64,6 +69,9 @@ public interface ShoesAPI {
 
     @GET("api/users")
     Call<List<User>> getUser();
+
+    @GET("api/users/{userId}")
+    Call<List<User>> getUserById(@Path("userId") int userId);
 
 
 

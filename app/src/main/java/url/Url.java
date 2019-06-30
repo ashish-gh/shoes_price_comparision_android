@@ -12,7 +12,7 @@ public class Url {
     public static int storeId ;
 
     public static int userId;
-    public static String user;
+    public static String user="ashish";
 
 
     public static Retrofit getInstance(){
