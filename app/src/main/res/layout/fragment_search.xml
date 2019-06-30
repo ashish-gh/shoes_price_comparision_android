@@ -61,6 +61,13 @@
                     android:layout_below="@id/imgQr"
                     android:layout_margin="10dp"/>
 
+                <ImageView
+                    android:id="@+id/change"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/btnSearchShoes"
+                    android:background="@color/drawable"
+                    />
 
             </RelativeLayout>
 

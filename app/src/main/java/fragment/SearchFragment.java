@@ -4,6 +4,7 @@ package fragment;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,11 +39,12 @@ import static android.support.constraint.Constraints.TAG;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private RecyclerView recyclerViewListShoes;
     private EditText etSearchShoes;
     private Button btnSearchShoes;
+    ImageView imgChange;
 
 
     public SearchFragment() {
@@ -65,7 +69,8 @@ public class SearchFragment extends Fragment {
                 search();
             }
         });
-
+        imgChange = view.findViewById(R.id.change);
+        imgChange.setOnClickListener(this);
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
@@ -89,6 +94,7 @@ public class SearchFragment extends Fragment {
                 Log.d("error", t.getLocalizedMessage());
             }
         });
+
 
         return view;
 
@@ -120,6 +126,15 @@ public class SearchFragment extends Fragment {
                 Log.d(TAG, "onFailure:  "  + t.getLocalizedMessage());
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.change){
+
+        recyclerViewListShoes.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        }
+
     }
 }
 
