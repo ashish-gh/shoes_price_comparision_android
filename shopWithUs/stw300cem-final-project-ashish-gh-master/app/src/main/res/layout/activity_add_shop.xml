@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ddd"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".admin.AddItemActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ddd">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ddd"
+            >
+
+    <ImageView
+        android:id="@+id/imgBackAddShop"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_arrow_back"
+        tools:ignore="VectorDrawableCompat"
+        android:background="#ddd"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#ddd"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="@string/enter_shop_name"
+            android:background="#ddd"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/etShopName"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_edittext"
+            android:hint="Enter Shop Name"
+            android:inputType="text"
+            android:paddingLeft="8dp"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="#ddd"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="@string/shop_latitude"
+            android:textSize="16sp"
+            android:background="#ddd"
+            />
+
+        <EditText
+            android:id="@+id/etAddShopLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_edittext"
+            android:hint="Enter Latitude"
+            android:inputType="numberDecimal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:background="#ddd"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:text="@string/shop_latitude"
+            android:textSize="16sp"
+            android:background="#ddd"
+            />
+
+        <EditText
+            android:id="@+id/etAddShopLongitude"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/drawable_edittext"
+            android:hint="Enter Longitude"
+            android:inputType="numberDecimal"
+            android:paddingLeft="8dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnAddShop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/drawable_button"
+        android:text="@string/btn_add_shoe"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
