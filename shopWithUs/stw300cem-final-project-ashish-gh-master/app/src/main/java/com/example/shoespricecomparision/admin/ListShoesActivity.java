@@ -69,6 +69,7 @@ public class ListShoesActivity extends AppCompatActivity {
                     Toast.makeText(ListShoesActivity.this, "Code : "+ response.code() , Toast.LENGTH_SHORT).show();
                 }
                 List<Shoes> items =  response.body();
+
                 ShoesAdapterAdmin shoesAdapterAdmin = new ShoesAdapterAdmin(items,ListShoesActivity.this);
                 recyclerViewListShoeAdmin.setAdapter(shoesAdapterAdmin);
                 recyclerViewListShoeAdmin.setLayoutManager(new LinearLayoutManager(ListShoesActivity.this));

@@ -5,6 +5,7 @@ import android.content.ClipData;
 import java.util.List;
 
 import model.ImageResponse;
+import model.LoginSignUpResponse;
 import model.Review;
 import model.Shoes;
 import model.Store;
@@ -80,6 +81,9 @@ public interface ShoesAPI {
     @POST("api/register")
     Call<Void> registerUser(@Body User user);
 
+// for login
+    @POST("/api/auth")
+    Call<LoginSignUpResponse>  authenticate(@Body User user);
 
 
 //----------------------------------------
