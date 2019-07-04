@@ -1,6 +1,8 @@
 package com.example.shoespricecomparision;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
@@ -8,10 +10,14 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.example.shoespricecomparision.admin.AdminDashboardActivity;
 
 import fragment.FavoriteFragment;
 import fragment.SearchFragment;
 import fragment.SettingFragment;
+import sharedPreferences.PreferenceUtility;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,13 +27,31 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 //    private Toolbar toolbar;
 
+    private SharedPreferences sharedPreferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        tabLayout = findViewById(R.id.tabLayout);
-//        viewPager = findViewById(R.id.viewPager);
+        sharedPreferences = this.getSharedPreferences("User",MODE_PRIVATE);
+        if (sharedPreferences.getString("email", "") != null){
+            Toast.makeText(this, "No email ", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "" + sharedPreferences.getString("email", ""), Toast.LENGTH_SHORT).show();
+        }
+        sharedPreferences = this.getSharedPreferences("UserType",MODE_PRIVATE);
+        if (sharedPreferences.getString("userType", "") != null){
+            Toast.makeText(this, "No user ", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+
+
+
 
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time

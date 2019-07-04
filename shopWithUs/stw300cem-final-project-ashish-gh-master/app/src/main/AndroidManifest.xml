@@ -37,7 +37,7 @@
         <activity android:name=".admin.ListShoesActivity" />
         <activity android:name=".admin.AddItemActivity" />
         <activity android:name=".admin.UpdateShoesActivity" />
-        <activity android:name=".SplashActivity" />
+        <activity android:name=".admin.AdminDashboardActivity" />
         <activity
             android:windowSoftInputMode="adjustResize"
             android:name=".MainActivity" />
@@ -49,7 +49,7 @@
             android:windowSoftInputMode="adjustResize"
             android:name=".LoginActivity" />
         <activity android:name=".ShoesDescriptionActivity" />
-        <activity android:name=".admin.AdminDashboardActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />

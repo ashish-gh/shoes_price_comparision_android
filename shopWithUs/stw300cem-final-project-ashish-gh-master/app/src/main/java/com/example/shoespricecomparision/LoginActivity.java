@@ -21,6 +21,7 @@ import model.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import sharedPreferences.PreferenceUtility;
 import shoesAPI.ShoesAPI;
 import url.Url;
 
@@ -34,8 +35,11 @@ public class LoginActivity extends AppCompatActivity {
     private int onStartCount = 1;
     private ProgressDialog progress;
 
-    boolean userCheck;
+    boolean userCheck, userType;
     String emailAddress =null;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferencesUserType;
 
 
 
@@ -55,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
             onStartCount = 2;
         }
 
+        sharedPreferencesUserType = this.getSharedPreferences("UserType",MODE_PRIVATE);
+
         etEmail = findViewById(R.id.etEmailLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
         btnLogin= findViewById(R.id.btnSignIn);
@@ -64,6 +70,14 @@ public class LoginActivity extends AppCompatActivity {
         progress =  new ProgressDialog(this);
 
         final String userType = "admin";
+
+
+        sharedPreferences = this.getSharedPreferences("User",MODE_PRIVATE);
+        if (sharedPreferences.getString("token", "") == null){
+//
+            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
+        }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,9 +94,20 @@ public class LoginActivity extends AppCompatActivity {
                                 if (getUserType()){
 //                                    store user details in shared preferences
 
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    Log.d("inside", "inside get user");
+
+                                    Log.d("val",  "usessssssss "  + sharedPreferencesUserType.getString("userType", ""));
+                                    if (sharedPreferencesUserType.getString("userType","") =="admin"){
+                                        Intent intent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }else if(sharedPreferencesUserType.getString("userType", "") =="User"){
+                                        Intent intent= new Intent(LoginActivity.this,MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+
                                 }
                         }
 
@@ -126,7 +151,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean getUserType() {
-        Toast.makeText(this, "To get user" + emailAddress, Toast.LENGTH_SHORT).show();
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
         Call<List<User>> listCall =  shoesAPI.getUserByEmail(emailAddress);
         listCall.enqueue(new Callback<List<User>>() {
@@ -136,13 +160,26 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Not retreived", Toast.LENGTH_SHORT).show();
                 }else{
                     List<User> users = response.body();
+
+                    Log.d("user size" , " uses size : "+ users.size());
+
                     if(users.size() > 0){
-                        userCheck = true;
+                        for (int i=0; i < users.size(); i++  ){
+                            SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserType", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("userType",users.get(i).getUserType());
+                            editor.commit();
+
+                            Log.d("usertype ", "user type  : " + users.get(i).getUserType() );
+
+//                        setting user type in shared preferences
+//                        SaveSharedPreference.setUserType(getApplicationContext(), users.get(i).getUserType());
+                        }
+                        userType = true;
                         Toast.makeText(LoginActivity.this, "Email address found", Toast.LENGTH_SHORT).show();
 //                        add this email address to shared preferences
-
                     }else {
-                        userCheck = false;
+                        userType = false;
                     }
                 }
             }
@@ -153,7 +190,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        return userCheck;
+        return userType;
     }
 
 
@@ -173,8 +210,16 @@ public class LoginActivity extends AppCompatActivity {
                 }else {
                     Toast.makeText(LoginActivity.this, "Here", Toast.LENGTH_SHORT).show();
                     if (response.body().getSuccess()){
+//                      saving logged status
 
-                        Toast.makeText(LoginActivity.this, "No success", Toast.LENGTH_SHORT).show();
+                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("email",response.body().getEmail());
+                        editor.putString("token", response.body().getAccessToken());
+                        editor.commit();
+
+//                        preferenceUtility.setLoggedIn(getApplicationContext(), response.body().getAccessToken());
+
                     Toast.makeText(LoginActivity.this, "" + response.headers().get("Token"), Toast.LENGTH_SHORT).show();
                     Toast.makeText(LoginActivity.this, "" + response.headers().get("accessToken"), Toast.LENGTH_SHORT).show();
 
@@ -192,7 +237,6 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Error : "+ t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
         return userCheck;
     }
 
