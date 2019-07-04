@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--for textView-->
+    <dimen name="text_size_small">8sp</dimen>
+    <dimen name="text_size_medium">10sp</dimen>
+    <dimen name="text_size_large">12sp</dimen>
+    <dimen name="text_size_xlarge">14sp</dimen>
+    <dimen name="text_size_xx_large">25sp</dimen>
+    <dimen name="text_size_xxx_large">35sp</dimen>
+
+    <!--for logo-->
+    <dimen name="img_logo_width">35dp</dimen>
+    <dimen name="img_logo_height">35dp</dimen>
+
+    <!--for logo-->
+    <dimen name="img_logo_login_height">200dp</dimen>
+    <dimen name="img_logo_login_width">180dp</dimen>
+
+    <!--for login-->
+    <dimen name="login_padding_height">10dp</dimen>
+    <dimen name="login_padding_width">10dp</dimen>
+
+    <!--for qr-->
+    <dimen name="img_logo_qr_height">30dp</dimen>
+    <dimen name="img_logo_qr_width">30dp</dimen>
+
+
+</resources>

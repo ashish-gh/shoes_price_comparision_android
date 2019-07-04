@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ReviewActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarReview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:minHeight="?attr/actionBarSize"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_collapseMode="pin"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewReview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/toolbarReview"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/recyclerViewReview"
+        >
+
+        <EditText
+            android:id="@+id/etReview"
+            android:layout_width="731dp"
+            android:layout_height="wrap_content"
+            android:hint="Enter your review" />
+
+        <Button
+            android:id="@+id/btnReview"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Send"
+            android:drawableTop="@drawable/button_radius"
+            android:drawableBottom="@drawable/button_radius"
+            android:background="?android:attr/selectableItemBackground"
+            />
+
+    </LinearLayout>
+
+</RelativeLayout>

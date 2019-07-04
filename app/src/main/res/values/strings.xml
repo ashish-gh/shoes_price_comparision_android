@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">ShoesPriceComparision</string>
+    <string name="action_sign_in_short">REGISTER</string>
+    <string name="email">Email</string>
+    <string name="minimum_password">Password too short, enter minimum 6 characters!</string>
+    <string name="auth_failed">Authentication failed, check your email and password or sign up</string>
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="send_password_reset_email">Send Password reset email</string>
+    <string name="remove_user">Remove user</string>
+    <string name="new_pass">New Password</string>
+    <string name="title_activity_profile">Dashboard</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_password_confirm">Confirm Password</string>
+
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_register">Not a member? Get registered now!</string>
+    <string name="btn_link_to_login">Already registered. Login Me!</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Forgot your password?</string>
+    <string name="btn_reset_password">RESET PASSWORD</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="hint_new_email">New Email</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_send">Send</string>
+    <string name="btn_remove">Remove</string>
+    <string name="btn_sign_out">Sign Out</string>
+    <string name="lbl_forgot_password">Forgot password?</string>
+    <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
+    <string name="settings_name">Account Settings</string>
+
+
+    <!--Admin Dashboard-->
+    <string name="add_item_admin_dashboard">ADD ITEMS</string>
+    <string name="list_item_admin_dashboard">LIST ITEMS</string>
+    <string name="add_shop_admin_dashboard">ADD SHOPS</string>
+    <string name="list_shop_admin_dashboard">LIST SHOPS</string>
+    <string name="list_user_admin_dashboard">LIST USERS</string>
+    <string name="logout_admin_dashboard">LOG OUT</string>
+    <string name="list_comments_admin_dashboard">LIST COMMENTS</string>
+
+    <!--Add Item-->
+    <string name="select_brand">Select Brand</string>
+    <string name="enter_shoe_name">Name</string>
+    <string name="enter_shoe_price">Price</string>
+    <string name="enter_shoe_description">Description</string>
+    <string name="btn_add_shoe">Save</string>
+    <string name="select_shoe">Select image</string>
+    <string name="login_your_account">Login your account</string>
+
+    <!--Add Shop-->
+    <string name="enter_shop_name">Shop Name</string>
+    <string name="shop_latitude">Latitude</string>
+    <string name="shop_longitude">Longitude</string>
+    <string name="btn_add_shop">Save</string>
+
+
+    <!--Update user-->
+    <string name="update_user_profile">Update</string>
+
+
+    <!--Update Item-->
+    <string name="btn_update_shoes">Update</string>
+
+
+    <!--Bottom bottom_nav_menu-->
+    <string name="nav_search">Search</string>
+    <string name="nav_favorite">Favorite</string>
+    <string name="nav_setting">Setting</string>
+
+    <!--Bottom bottom_nav_menu-->
+    <string name="fav_favourites">Favourites</string>
+    <string name="fav_viewes">Viewed</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="welcome_message_splash_screen">Welcome to my app</string>
+    <string name="title_activity_shoes_description">ShoesDescriptionActivity</string>
+
+    <string name="shop_description">
+        The Ramesh shop is located in the historical heart of the city, right next to the Haymards station.
+        Varied selection of shoes can be purchased over here.
+    </string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>
