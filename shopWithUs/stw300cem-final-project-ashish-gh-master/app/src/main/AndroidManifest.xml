@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shoespricecomparision">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -13,6 +16,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,35 +26,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ScanQR" />
         <activity android:name=".admin.ListCommentActivity" />
         <activity android:name=".admin.ListUserActivity" />
         <activity android:name=".admin.UpdateStoreActivity" />
         <activity android:name=".admin.ListStoreActivity" />
+        <activity android:name=".admin.AddShopActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" />
-        <activity android:name=".ReviewActivity" />
-        <activity android:name=".admin.ListShoesActivity" />
-        <activity android:name=".admin.AddItemActivity" />
-        <activity android:name=".admin.UpdateShoesActivity" />
-        <activity android:name=".admin.AdminDashboardActivity" />
-        <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name=".MainActivity" />
-        <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name=".SignupActivity"
-            />
-        <activity
-            android:windowSoftInputMode="adjustResize"
-            android:name=".LoginActivity" />
-        <activity android:name=".ShoesDescriptionActivity" />
-        <activity android:name=".SplashActivity">
+            android:name=".SplashActivity"
+            android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.MAIN" />
@@ -57,6 +47,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ReviewActivity" />
+        <activity android:name=".admin.ListShoesActivity" />
+        <activity android:name=".admin.AddItemActivity" />
+        <activity android:name=".admin.UpdateShoesActivity" />
+        <activity
+            android:name=".admin.AdminDashboardActivity"
+            android:screenOrientation="sensor" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".SignupActivity"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="sensor"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ShoesDescriptionActivity" />
+        <activity android:name=".MapsActivity"></activity>
     </application>
 
 </manifest>

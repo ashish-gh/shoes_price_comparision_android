@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.shoespricecomparision.admin.AddItemActivity;
@@ -45,10 +46,10 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
 
     int onStartCount = 0;
 
-    private Toolbar toolbarReview;
     private EditText etReview;
     private Button btnReview;
     private RecyclerView recyclerViewReview;
+    private ImageView imgBackReview;
 
 //    for animation
     private Animation animation;
@@ -68,38 +69,27 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
 
         etReview = findViewById(R.id.etReview);
         btnReview = findViewById(R.id.btnReview);
+        imgBackReview = findViewById(R.id.imgBackReview);
         recyclerViewReview = findViewById(R.id.recyclerViewReview);
 
         btnReview.setOnClickListener(this);
+        imgBackReview.setOnClickListener(this);
 
-
-//      set toolbar
-        toolbarReview = findViewById(R.id.toolbarReview);
-        setSupportActionBar(toolbarReview);
-
-//      set back button in toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
 
 //      setting review inside recyclerview
         loadComment();
     }
 
-//    to add back button in toolbar
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        Intent intent = new Intent(ReviewActivity.this, ShoesDescriptionActivity.class);
-        startActivity(intent);
-        finish();
-        return  true;
-    }
 
 
     //    implementing click listener
     @Override
     public void onClick(View v) {
+        if(v.getId() == R.id.imgBackReview){
+            Intent intent = new Intent(ReviewActivity.this, ShoesDescriptionActivity.class);
+            startActivity(intent);
+            finish();
+        }
         if (v.getId() == R.id.btnReview){
 //            check if text field is empty or not
             if (textvalidation()) {
@@ -163,14 +153,12 @@ public class ReviewActivity extends AppCompatActivity implements View.OnClickLis
                     Toast.makeText(ReviewActivity.this, "Code :" + response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 List<Review> reviewList = response.body();
 
-                for (int i=0; i<reviewList.size(); i++){
-                    Log.d("rage", "onResponse: " + reviewList.get(i).getReview() + " "+ reviewList.get(i).getReviewDate());
-                }
-                Log.d("tag", "onResponse: size "  + reviewList.size());
-
+//                for (int i=0; i<reviewList.size(); i++){
+//                    Log.d("rage", "onResponse: " + reviewList.get(i).getReview() + " "+ reviewList.get(i).getReviewDate());
+//                }
+//                Log.d("tag", "onResponse: size "  + reviewList.size());
 
                 ReviewAdapter reviewAdapter = new ReviewAdapter(reviewList,ReviewActivity.this);
                 recyclerViewReview.setAdapter(reviewAdapter);

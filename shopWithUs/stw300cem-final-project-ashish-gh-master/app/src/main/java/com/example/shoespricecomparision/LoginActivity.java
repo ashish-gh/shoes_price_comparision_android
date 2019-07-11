@@ -33,7 +33,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private Button btnLogin;
-    private Button btnForgotPassword;
     private Button btnSignUp;
 
     boolean userCheck, userType;
@@ -59,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.etEmailLogin);
         etPassword = findViewById(R.id.etPasswordLogin);
         btnLogin= findViewById(R.id.btnSignIn);
-        btnForgotPassword= findViewById(R.id.btn_reset_password);
         btnSignUp = findViewById(R.id.btnSignUpLogin);
 
 

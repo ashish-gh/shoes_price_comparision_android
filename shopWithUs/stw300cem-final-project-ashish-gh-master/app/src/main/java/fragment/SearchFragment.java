@@ -59,17 +59,11 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
         recyclerViewListShoes = (RecyclerView) view.findViewById(R.id.recyclerViewListShoes);
 
         etSearchShoes = view.findViewById(R.id.etSearchShoes);
-
         btnSearchShoes = view.findViewById(R.id.btnSearchShoes);
 
-        btnSearchShoes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: i clicked search button");   
-            }
-        });
-
         imgQr = view.findViewById(R.id.imgQr);
+        btnSearchShoes.setOnClickListener(this);
+
 
 //        click listener on qr code
         imgQr.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +111,6 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     private void search() {
         String shoesName = etSearchShoes.getText().toString();
-
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
         Call<List<Shoes>> listCall = shoesAPI.getShoeByName(shoesName);
 
@@ -157,13 +150,13 @@ public class SearchFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-//        if (v.getId() == R.id.btnSearchShoes){
-////            to check if search text is empty or not
-//            Toast.makeText(getActivity(), "This is ", Toast.LENGTH_SHORT).show();
-////            if (textvalidation()){
-////                search();
-////            }
-//        }
+        if (v.getId() == R.id.btnSearchShoes){
+//            to check if search text is empty or not
+            Toast.makeText(getActivity(), "This is ", Toast.LENGTH_SHORT).show();
+            if (textvalidation()){
+                search();
+            }
+        }
     }
 
 

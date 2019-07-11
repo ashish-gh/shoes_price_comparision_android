@@ -43,7 +43,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity implements OnMap
     private Toolbar toolbar;
     private TextView tvNameDes,tvReviewDescription, tvShoesBrandDescription, tvShoesNameDescription, tvShoesPriceDescription;
 
-    private int shoesId;
+
     private ImageView imgDisplayHeader;
 
 //    for map
@@ -94,9 +94,9 @@ public class ShoesDescriptionActivity extends AppCompatActivity implements OnMap
             public void onClick(View v) {
 //                calling startActivity to set animation style
                 Intent intent = new Intent(ShoesDescriptionActivity.this,ReviewActivity.class);
-                Toast.makeText(ShoesDescriptionActivity.this, "before going shoesId :" + shoesId, Toast.LENGTH_SHORT).show();
-                Log.d("tag" , "new value here we have" + shoesId);
-                intent.putExtra("shoeId : ", shoesId);
+                Toast.makeText(ShoesDescriptionActivity.this, "before going shoesId :" + Url.shoesId, Toast.LENGTH_SHORT).show();
+                Log.d("tag" , "new value here we have" + Url.shoesId);
+                intent.putExtra("shoeId : ", Url.shoesId);
                 startActivity(intent);
                 finish();
             }
@@ -114,10 +114,10 @@ public class ShoesDescriptionActivity extends AppCompatActivity implements OnMap
         strictMode();
         URL url = null;
         Bundle bundle = getIntent().getExtras();
-        shoesId = bundle.getInt("shoeId");
         Url.shoesId = bundle.getInt("shoeId");
 
-        Toast.makeText(this, "shoesId" + shoesId, Toast.LENGTH_SHORT).show();
+        int shoe = Integer.parseInt(bundle.getString("shoeId"));
+        Toast.makeText(this, "shoesId" + Url.shoesId, Toast.LENGTH_SHORT).show();
         if (bundle != null) {
             imgDisplayHeader.setImageResource(bundle.getInt("image"));
 

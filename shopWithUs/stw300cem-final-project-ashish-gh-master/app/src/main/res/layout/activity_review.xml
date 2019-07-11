@@ -7,20 +7,21 @@
     android:orientation="vertical"
     tools:context=".ReviewActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarReview"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:minHeight="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:layout_collapseMode="pin"
-        />
+
+    <ImageView
+        android:id="@+id/imgBackReview"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:srcCompat="@drawable/ic_arrow_back"
+        tools:ignore="VectorDrawableCompat"
+        android:background="#ddd"/>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewReview"
         android:layout_width="match_parent"
         android:layout_height="600dp"
-        android:layout_below="@id/toolbarReview"
+        android:layout_below="@id/imgBackReview"
         >
 
     </android.support.v7.widget.RecyclerView>

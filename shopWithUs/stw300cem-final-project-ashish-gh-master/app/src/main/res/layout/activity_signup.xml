@@ -28,7 +28,9 @@
             android:layout_height="@dimen/img_logo_height"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:background="#ddd"
+            />
 
         <EditText
             android:id="@+id/etFirstNameRegister"
@@ -92,7 +94,7 @@
             android:layout_weight="1"
             android:background="@drawable/drawable_edittext"
             android:hint="@string/hint_password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:paddingLeft="8dp"
             android:textSize="16sp"
             android:layout_marginTop="5dp"
@@ -104,7 +106,7 @@
             android:layout_weight="1"
             android:background="@drawable/drawable_edittext"
             android:hint="@string/hint_password_confirm"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:paddingLeft="8dp"
             android:textSize="16sp"
             android:layout_marginTop="5dp"
@@ -133,7 +135,7 @@
             android:background="@null"
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
-            android:textColor="@color/colorPink"
+            android:textColor="@color/primaryDark"
             android:textSize="15dp" />
 
     <ProgressBar

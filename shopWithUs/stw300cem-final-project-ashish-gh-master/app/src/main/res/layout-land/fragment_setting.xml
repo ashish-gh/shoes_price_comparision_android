@@ -4,267 +4,248 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ddd"
+    android:background="@color/grayLight"
     android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#ddd"
-        >
-        <RelativeLayout
-            android:background="#ddd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.CardView
-                android:layout_marginTop="10dp"
-                android:id="@+id/cardListUsers"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#ddd"
-                app:cardCornerRadius="5dp"
-                android:visibility="invisible"
-                >
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#ddd"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="549dp"
-                android:layout_height="141dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginBottom="5dp"
-                android:background="#ddd"
-                android:text="Welcome, ashish"
-                android:textColor="#777"
-                android:textSize="@dimen/text_size_xx_large" />
-
-            <ImageView
-                android:id="@+id/imgProfile"
-                android:layout_width="@dimen/img_logo_width"
-                android:layout_height="@dimen/img_logo_height"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="24dp"
-                android:layout_marginEnd="27dp"
-                android:layout_toRightOf="@id/userName"
-                android:background="#ddd"
-                android:outlineAmbientShadowColor="@color/colorAccent"
-                android:src="@drawable/ic_person_black_24dp" />
-        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="#ddd"
-            android:layout_margin="10dp"
-            >
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardLoginAccount"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="#ddd"
-                app:cardCornerRadius="5dp"
-                >
+                android:layout_height="370dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/img_logo_login_height"
-                    android:background="@drawable/ic_camera"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnLoginFragment"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/drawable_button"
-                        android:text="@string/login_your_account"
-                        android:textColor="#FFFFFF"
-                        android:padding="@dimen/login_padding_height"
-                        android:textSize="@dimen/text_size_font" />
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="10dp"
-            android:background="#ddd"
-
-            >
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardUpdateUserProfile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="5dp"
-                android:background="#ddd"
-                android:visibility="invisible"
-                >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
-                    android:orientation="vertical"
-                    android:background="#ddd"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="#ddd"
-                        android:layout_margin="10dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_weight="1"
-                            android:text="Email Address"
-                            android:background="#ddd"
-                            android:textSize="16sp" />
-                        <EditText
-                            android:id="@+id/etShopName"
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/drawable_edittext"
-                            android:hint="Email Address"
-                            android:inputType="text"
-                            android:paddingLeft="8dp"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:background="#ddd"
-                        android:orientation="vertical"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_weight="1"
-                            android:text="Password"
-                            android:background="#ddd"
-                            android:textSize="16sp" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/drawable_edittext"
-                            android:hint="Password"
-                            android:inputType="text"
-                            android:paddingLeft="8dp"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="#ddd"
-                        android:orientation="vertical"
-                        android:layout_margin="10dp">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_weight="1"
-                            android:text="Address"
-                            android:background="#ddd"
-                            android:textSize="16sp" />
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/drawable_edittext"
-                            android:hint="Address"
-                            android:inputType="text"
-                            android:paddingLeft="8dp"
-                            android:textSize="16sp" />
-                    </LinearLayout>
+                    android:background="@drawable/gradientbackground"
+                    android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/btnUpdateUser"
-                        android:layout_width="match_parent"
+                        android:id="@+id/btnLogoutUser"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_gravity="right"
+                        android:text="Logout"
                         android:background="@drawable/drawable_button"
-                        android:text="@string/update_user_profile"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:layout_margin="10dp"/>
+                        />
 
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="45dp"
+                        android:background="@drawable/gradientbackground"
+                        android:layout_gravity="center"
+                        android:src="@drawable/noimage"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvWelcome"
+                        android:text="Welcome"
+                        android:textColor="#fff"
+                        android:textSize="30sp"
+                        android:background="@drawable/gradientbackground"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#ddd"
-            android:visibility="invisible"
-
-            >
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
+            android:background="@drawable/gradientbackground">
+            <TextView
+                android:id="@+id/tvFirstNameProfile"
+                android:layout_weight="2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="#ddd"
-                app:cardCornerRadius="5dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/gradientbackground"
+                android:textColor="#fff"
+                android:text="ashish"
+
+                android:textSize="21sp"
+                android:gravity="right"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_weight="2"
+                android:id="@+id/tvLastNameProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="ghimire"
+                android:background="@drawable/gradientbackground"
+                android:textColor="#fff"
+                android:layout_marginLeft="5dp"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+            </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/lnrUserDetails"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
                 >
 
                 <LinearLayout
+                    android:orientation="horizontal"
+                    android:paddingLeft="25dp"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
+                    android:layout_height="wrap_content">
                     <ImageView
-                        android:src="@drawable/noimage"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_email"/>
+                    <EditText
+                        android:id="@+id/etEmailProfile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        />
-                    <Button
-                        android:id="@id/btn"
-                        android:text="Button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"/>
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_edittext"
+                        android:hint="Email Address"
+                        android:inputType="textEmailAddress"
+                        android:paddingLeft="8dp"
+                        android:windowSoftInputMode="adjustResize"
+                        android:textSize="16sp" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_contact"/>
+                    <EditText
+                        android:id="@+id/etContactProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_edittext"
+                        android:hint="Contact Number"
+                        android:inputType="number"
+                        android:paddingLeft="8dp"
+                        android:windowSoftInputMode="adjustResize"
+                        android:textSize="16sp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_security_black_24dp"/>
+                    <EditText
+                        android:id="@+id/etPasswordProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_edittext"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="8dp"
+                        android:windowSoftInputMode="adjustResize"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="25dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_security_black_24dp"/>
+                    <EditText
+                        android:id="@+id/etConfirmPasswordProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/drawable_edittext"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword"
+                        android:paddingLeft="8dp"
+                        android:windowSoftInputMode="adjustResize"
+                        android:textSize="16sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rtlLoginProfile"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="#fff"
+            >
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="5dp"
+                android:layout_margin="10dp"
+                >
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:src="@drawable/noimage"
+                />
+
+                <Button
+                    android:id="@+id/btnLoginProfile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/gradientbackgroundbutton"
+                    android:text="Login"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:textColor="#fff"
+                    />
+
             </android.support.v7.widget.CardView>
+        </RelativeLayout>
+            <Button
+                android:id="@+id/btnUpdateProfile"
+                android:textColor="#fff"
+                android:background="@drawable/gradientbackgroundbutton"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Update"/>
         </LinearLayout>
-
-
-    </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

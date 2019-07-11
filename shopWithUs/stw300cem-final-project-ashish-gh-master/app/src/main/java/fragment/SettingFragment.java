@@ -117,8 +117,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         tvFistName = view.findViewById(R.id.tvFirstNameProfile);
         tvLastName= view.findViewById(R.id.tvLastNameProfile);
         btnLoginProfile = view.findViewById(R.id.btnLoginProfile);
-        cardViewLogin = view.findViewById(R.id.cardLoginAccount);
-        cardViewUpdateUser= view.findViewById(R.id.cardUpdateUserProfile);
+//        cardViewLogin = view.findViewById(R.id.cardLoginAccount);
+//        cardViewUpdateUser= view.findViewById(R.id.cardUpdateUserProfile);
         btnUpdate = view.findViewById(R.id.btnUpdateProfile);
 
         btnLogout = view.findViewById(R.id.btnLogoutUser);
@@ -207,10 +207,13 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
             }
         }
 
+        // to logout
 
-        if (v.getId()==R.id.btn){
-            Toast.makeText(getActivity(), "hell", Toast.LENGTH_SHORT).show();
+        if (v.getId() == R.id.btnLogoutUser){
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            startActivity(intent);
         }
+
         if (v.getId() == R.id.btnLoginProfile){
             Intent intent = new Intent(getContext(), LoginActivity.class);
             startActivity(intent);
@@ -310,7 +313,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
     private void updateUser() {
 
-        Log.d(TAG, "updateUser: this is user id" +Url.userId);
         saveImageOnly();
         String fistName = tvFistName.getText().toString();
         String lastName = tvLastName.getText().toString();
@@ -319,10 +321,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         String password = etPassword.getText().toString();
 //        String imageName = "profile.jpg";
 
-
-        Log.d(TAG, "updateUser: imgae name " + imageName);
-
-
         User user = new User(fistName,lastName,contact,email,password,imageName,"user");
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -330,11 +328,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-
         ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
-
         Call<Void> itemsCall = shoesAPI.updateUser(Url.userId, user);
-
         itemsCall.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

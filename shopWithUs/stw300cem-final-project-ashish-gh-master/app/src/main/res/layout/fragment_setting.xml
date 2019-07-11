@@ -26,6 +26,15 @@
                     android:background="@drawable/gradientbackground"
                     android:orientation="vertical">
 
+                    <Button
+                        android:id="@+id/btnLogoutUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:text="Logout"
+                        android:background="@drawable/drawable_button"
+                        />
+
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgProfile"
@@ -211,7 +220,6 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
-                android:src="@drawable/noimage"
                 />
 
                 <Button

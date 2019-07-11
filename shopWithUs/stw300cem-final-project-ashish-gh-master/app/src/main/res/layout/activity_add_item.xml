@@ -41,19 +41,19 @@
             android:text="@string/select_brand"
             android:background="#ddd"
             android:textSize="16sp" />
-        <Spinner
-            android:id="@+id/spnBrand"
+        <EditText
+            android:id="@+id/etBrandAddShoe"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/drawable_edittext"
-            android:hint="Enter Amount"
+            android:hint="Enter Brand"
             android:inputType="text"
             android:paddingLeft="8dp"
             android:textSize="16sp"
             >
 
-        </Spinner>
+        </EditText>
     </LinearLayout>
 
     <LinearLayout
@@ -143,7 +143,37 @@
             />
     </LinearLayout>
 
-    <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="#ddd">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Enter Shop"
+                    android:textSize="16sp"
+                    android:background="#ddd"/>
+                <EditText
+                    android:id="@+id/etAddShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_edittext"
+                    android:hint="Enter Shop"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="10dp"
+                    android:textSize="16sp" />
+
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

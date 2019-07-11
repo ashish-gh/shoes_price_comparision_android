@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".admin.ListShoesActivity">
-
+    tools:context=".admin.ListCommentActivity">
 
     <ImageView
-        android:id="@+id/imgBackListShoes"
+        android:id="@+id/imgBackListComment"
         android:layout_width="30dp"
         android:layout_height="30dp"
         app:srcCompat="@drawable/ic_arrow_back"
@@ -22,11 +19,13 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerViewListShoesAdmin"
+            android:id="@+id/recyclerViewListCommentAdmin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
-
     </FrameLayout>
+
+
+
+
 </LinearLayout>

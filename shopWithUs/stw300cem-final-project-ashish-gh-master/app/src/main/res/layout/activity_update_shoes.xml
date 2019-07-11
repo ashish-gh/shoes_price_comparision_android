@@ -141,7 +141,40 @@
             />
     </LinearLayout>
 
-    <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="#ddd"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Shop"
+                    android:textSize="16sp"
+                    android:background="#ddd"
+                    />
+
+                <EditText
+                    android:id="@+id/etUpdateShoesShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_edittext"
+                    android:hint="Enter Shop"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="10dp"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

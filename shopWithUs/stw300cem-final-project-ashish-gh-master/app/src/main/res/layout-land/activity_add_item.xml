@@ -8,23 +8,25 @@
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".admin.AddItemActivity">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ddd">
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#ddd"
-        >
+        android:background="#ddd">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#ddd"
+            >
     <ImageView
         android:id="@+id/imgBackAddItem"
-        android:layout_width="@dimen/img_logo_qr_height"
-        android:layout_height="@dimen/img_logo_qr_height"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:srcCompat="@drawable/ic_arrow_back"
         tools:ignore="VectorDrawableCompat"
         android:background="#ddd"/>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,20 +40,22 @@
             android:layout_weight="1"
             android:text="@string/select_brand"
             android:background="#ddd"
-            android:textSize="@dimen/text_size_xx_large" />
-        <Spinner
-            android:id="@+id/spnBrand"
+            android:textSize="16sp" />
+        <EditText
+            android:id="@+id/etBrandAddShoe"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:background="@drawable/drawable_edittext"
-            android:hint="Enter Amount"
+            android:hint="Enter Brand"
             android:inputType="text"
             android:paddingLeft="8dp"
-            android:textSize="@dimen/text_size_xx_large"
+            android:textSize="16sp"
             >
-        </Spinner>
+
+        </EditText>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +69,7 @@
             android:layout_weight="1"
             android:text="@string/enter_shoe_name"
             android:background="#ddd"
-            android:textSize="@dimen/text_size_xx_large" />
+            android:textSize="16sp" />
         <EditText
             android:id="@+id/etAddShoeName"
             android:layout_width="match_parent"
@@ -75,7 +79,7 @@
             android:hint="Enter Name"
             android:inputType="text"
             android:paddingLeft="8dp"
-            android:textSize="@dimen/text_size_xx_large" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -85,15 +89,17 @@
         android:orientation="vertical"
         android:background="#ddd"
         >
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/enter_shoe_price"
-            android:textSize="@dimen/text_size_xx_large"
+            android:textSize="16sp"
             android:background="#ddd"
             />
+
         <EditText
             android:id="@+id/etAddShoePrice"
             android:layout_width="match_parent"
@@ -104,8 +110,11 @@
             android:inputType="numberDecimal"
             android:paddingLeft="8dp"
             android:paddingTop="10dp"
-            android:textSize="@dimen/text_size_xx_large" />
+            android:textSize="16sp" />
+
     </LinearLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +127,7 @@
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:text="@string/enter_shoe_description"
-            android:textSize="@dimen/text_size_xx_large"
+            android:textSize="16sp"
             android:background="#ddd"/>
         <EditText
             android:id="@+id/etAddShoeDescription"
@@ -129,11 +138,42 @@
             android:hint="Description"
             android:inputType="text"
             android:paddingLeft="8dp"
-            android:textSize="@dimen/text_size_xx_large"
+            android:textSize="16sp"
             android:paddingEnd="10dp"
             />
     </LinearLayout>
-    <LinearLayout
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:background="#ddd">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:text="Enter Shop"
+                    android:textSize="16sp"
+                    android:background="#ddd"/>
+                <EditText
+                    android:id="@+id/etAddShop"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/drawable_edittext"
+                    android:hint="Enter Shop"
+                    android:inputType="numberDecimal"
+                    android:paddingLeft="8dp"
+                    android:paddingTop="10dp"
+                    android:textSize="16sp" />
+
+                />
+            </LinearLayout>
+
+
+            <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -145,21 +185,23 @@
             android:layout_height="wrap_content"
             android:text="@string/select_shoe"
             android:layout_weight="1"
-            android:textSize="@dimen/text_size_xx_large"
+            android:textSize="16dp"
             android:background="#ddd"
             />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgAddShoe"
             android:layout_gravity="center"
-            android:layout_width="@dimen/img_image_height"
-            android:layout_height="@dimen/img_image_height"
+            android:layout_width="@dimen/img_logo_width"
+            android:layout_height="@dimen/img_logo_height"
             android:layout_weight="2"
             android:src="@drawable/noimage"
             android:background="#ddd"
             android:layout_marginRight="50dp"
             />
     </LinearLayout>
+
+
     <Button
         android:id="@+id/btnAddShoe"
         android:layout_width="match_parent"
@@ -168,7 +210,8 @@
         android:background="@drawable/drawable_button"
         android:text="@string/btn_add_shoe"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/text_size_xx_large" />
-    </LinearLayout>
-</ScrollView>
+        android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

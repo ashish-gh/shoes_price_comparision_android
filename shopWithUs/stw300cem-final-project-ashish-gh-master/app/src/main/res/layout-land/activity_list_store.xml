@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imgBackListStore"
-        android:layout_width="@dimen/img_logo_qr_width"
-        android:layout_height="@dimen/img_logo_qr_width"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         app:srcCompat="@drawable/ic_arrow_back"
         tools:ignore="VectorDrawableCompat"
         android:background="#ddd"/>
