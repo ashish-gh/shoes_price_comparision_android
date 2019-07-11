@@ -58,8 +58,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.StoreHolder>
 
         //        setting values in recyclerView
         storeHolder.tvStoreName.setText(store.getStoreName());
-        storeHolder.tvLatitude.setText(Float.toString(store.getLatitude()));
-        storeHolder.tvLongitude.setText(Float.toString(store.getLongitude()));
+        storeHolder.tvLatitude.setText(Double.toString(store.getLatitude()));
+        storeHolder.tvLongitude.setText(Double.toString(store.getLongitude()));
 
 
 //        to delete shoes

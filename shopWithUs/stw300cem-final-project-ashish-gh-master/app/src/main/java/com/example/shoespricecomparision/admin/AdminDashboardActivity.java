@@ -20,16 +20,19 @@ import animation.Animation;
 
 public class AdminDashboardActivity extends AppCompatActivity implements View.OnClickListener{
 
+    // for sensor
     private SensorManager sensorManager;
+
+    // for animation
     private Animation animation;
 
-    private CardView cardViewAddItem,cardViewListItem,cardViewAddShops, cardViewListShops, cardViewListUser, cardViewLogOut;
+    private CardView cardViewAddItem,cardViewListItem,cardViewAddShops, cardViewListShops ,cardViewLogOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
-
+        //using animation
         animation = new Animation();
         animation.slideRight(this);
 
@@ -37,20 +40,19 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
         cardViewListItem = findViewById(R.id.cardListItem);
         cardViewAddShops = findViewById(R.id.cardAddShops);
         cardViewListShops= findViewById(R.id.cardListShops);
-        cardViewListUser = findViewById(R.id.cardListUsers);
         cardViewLogOut = findViewById(R.id.cardLogOut);
 
         cardViewAddItem.setOnClickListener(this);
         cardViewListItem.setOnClickListener(this);
         cardViewAddShops.setOnClickListener(this);
         cardViewListShops.setOnClickListener(this);
-        cardViewListUser.setOnClickListener(this);
         cardViewLogOut.setOnClickListener(this);
 
 //        logoutProximity();
     }
 
 
+    // logout usign proximity sensor
     private void logoutProximity() {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
@@ -72,7 +74,7 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
         sensorManager.registerListener(sensorEventListener, sensor, sensorManager.SENSOR_DELAY_NORMAL);
     }
 
-
+    // click listener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -87,12 +89,10 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.cardAddShops:
-                Toast.makeText(this, "Add shop activity", Toast.LENGTH_SHORT).show();
+
                 Intent intentaddshop = new Intent(this,AddShopActivity.class);
                 startActivity(intentaddshop);
-//                Intent intentAddShops= new Intent(this,AddShopActivity.class);
-//                startActivity(intentAddShops);
-//                finish();
+                finish();
                 break;
             case R.id.cardListShops:
                 Intent intentListShops= new Intent(this,ListStoreActivity.class);
@@ -104,21 +104,18 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
                 logout();
                 break;
         }
-
-
-
     }
 
+
+    // to logout user
     private void logout() {
-//        alert dialog box in logout
+        // alert dialog box in logout
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to logout ?");
-//        setting positive message
+        // setting positive message
         builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(AdminDashboardActivity.this, "You clicked yes button", Toast.LENGTH_SHORT).show();
-
                 Intent intentLogOut = new Intent(AdminDashboardActivity.this, MainActivity.class);
                 startActivity(intentLogOut);
                 finish();
@@ -132,7 +129,6 @@ public class AdminDashboardActivity extends AppCompatActivity implements View.On
             public void onClick(DialogInterface dialog, int which) {
             }
         });
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 

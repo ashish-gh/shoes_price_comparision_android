@@ -3,10 +3,10 @@ package model;
 public class Store {
     private int storeId;
     private String storeName;
-    private Float latitude;
-    private Float longitude;
+    private double latitude;
+    private double longitude;
 
-    public Store(String storeName, Float latitude, Float longitude) {
+    public Store(String storeName, double latitude, double longitude) {
         this.storeName = storeName;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -28,19 +28,19 @@ public class Store {
         this.storeName = storeName;
     }
 
-    public Float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public Float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }

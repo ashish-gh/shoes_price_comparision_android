@@ -48,7 +48,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
 
         //        setting values in recyclerView
         commentHolder.tvComment.setText(review.getReview());
-        commentHolder.tvCommentUser.setText(review.getUserName());
         commentHolder.btnDeleteComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +57,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
                 builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        delete(review.getId());
+                        delete(review.getReviewId());
                     }
                 });
                 builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
@@ -103,13 +102,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentH
 
     public class CommentHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvComment, tvCommentUser;
+        private TextView tvComment;
         private Button btnDeleteComment;
 
         public CommentHolder(View itemView) {
             super(itemView);
             tvComment = (TextView) itemView.findViewById(R.id.tvCommentAdmin);
-            tvCommentUser= (TextView) itemView.findViewById(R.id.tvCommentUserAdmin);
             btnDeleteComment= (Button) itemView.findViewById(R.id.btnDeleteCommentAdmin);
         }
     }

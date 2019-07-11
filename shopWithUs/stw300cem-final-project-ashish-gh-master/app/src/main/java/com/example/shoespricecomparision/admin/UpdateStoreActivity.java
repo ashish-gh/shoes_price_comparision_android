@@ -76,9 +76,10 @@ public class UpdateStoreActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         etStoreName.setText(bundle.getString("storeName"));
-        etStoreLatitude.setText(Float.toString(bundle.getFloat("storeLatitude")));
-        etStoreLongitude.setText(Float.toString(bundle.getFloat("storeLongitude" +
-                "")));
+        etStoreLatitude.setText(bundle.getString("storeLatitude"));
+        etStoreLongitude.setText(bundle.getString("storeLongitude"));
+
+//        etStoreLatitude.setText(Double.toString(bundle.getString("storeLatitude")));
 
         storeId = bundle.getInt("storeId");
     }

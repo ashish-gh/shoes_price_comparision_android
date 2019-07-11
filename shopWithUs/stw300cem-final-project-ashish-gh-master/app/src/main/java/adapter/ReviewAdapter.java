@@ -51,7 +51,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
 //        setting values in recyclerview
         reviewHolder.tvReview.setText(review.getReview());
-        reviewHolder.tvUserReview.setText(review.getUserName());
+        reviewHolder.tvUserReview.setText(review.getReviewDate());
 
     }
 

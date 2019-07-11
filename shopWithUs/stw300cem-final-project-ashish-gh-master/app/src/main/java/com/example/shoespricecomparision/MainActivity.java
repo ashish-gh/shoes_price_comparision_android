@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.shoespricecomparision.admin.AdminDashboardActivity;
 
+import animation.Animation;
 import fragment.FavoriteFragment;
 import fragment.SearchFragment;
 import fragment.SettingFragment;
@@ -27,45 +28,29 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 //    private Toolbar toolbar;
 
-    private SharedPreferences sharedPreferences;
+    //  for animation
+    private Animation animation;
 
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sharedPreferences = this.getSharedPreferences("User",MODE_PRIVATE);
-        if (sharedPreferences.getString("email", "") != null){
-            Toast.makeText(this, "No email ", Toast.LENGTH_SHORT).show();
-        }else {
-            Toast.makeText(this, "" + sharedPreferences.getString("email", ""), Toast.LENGTH_SHORT).show();
-        }
-        sharedPreferences = this.getSharedPreferences("UserType",MODE_PRIVATE);
-        if (sharedPreferences.getString("userType", "") != null){
-            Toast.makeText(this, "No user ", Toast.LENGTH_SHORT).show();
-        }
+//        to check if user has been logged in or not
+//        sharedPreferences = this.getSharedPreferences("User",MODE_PRIVATE);
+//        if (sharedPreferences.getString("email", "") != null){
+//        }else {
+//        }
+//        sharedPreferences = this.getSharedPreferences("UserType",MODE_PRIVATE);
+//        if (sharedPreferences.getString("userType", "") != null){
+//        }
 
+        //        using animation
+        animation = new Animation();
+        animation.slideLeft(this);
 
-
-
-
-
-
-
-        onStartCount = 1;
-        if (savedInstanceState == null) // 1st time
-        {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
-            onStartCount++;
-        } else // already created so reverse animation
-        {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
-
-            onStartCount = 2;
-        }
 
 
         mBottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -83,9 +68,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_home:
                         loadSearchFragment();
                         return true;
-                    case R.id.action_profile:
-                        loadFavoriteFragment();
-                        return true;
+
+//                    case R.id.action_profile:
+//                        loadFavoriteFragment();
+//                        return true;
+
                     case R.id.action_settings:
                         loadSettingsFragment();
                         return true;
@@ -103,13 +90,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void loadFavoriteFragment() {
-        FavoriteFragment favoriteFragment = new FavoriteFragment();
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.replace(R.id.fragment_frame,favoriteFragment);
-        fragmentTransaction.commit();
-    }
+//    private void loadFavoriteFragment() {
+//        FavoriteFragment favoriteFragment = new FavoriteFragment();
+//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.replace(R.id.fragment_frame,favoriteFragment);
+//        fragmentTransaction.commit();
+//    }
 
     private void loadSettingsFragment() {
         SettingFragment settingFragment = new SettingFragment();

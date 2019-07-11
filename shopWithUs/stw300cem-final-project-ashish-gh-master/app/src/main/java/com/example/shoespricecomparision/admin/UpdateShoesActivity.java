@@ -44,7 +44,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
     int onStartCount = 0;
     private int shoesId;
 
-    private EditText etBrand, etShoeName, etShoePrice, etShoeDescription;
+    private EditText etBrand, etShoeName, etShoePrice, etShoeDescription,etShop;
     private ImageView imgShoe, imgBackUpdateShoes;
     private Button btnUpdateShoe;
     String imagePath;
@@ -75,6 +75,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
         imgShoe = findViewById(R.id.imgUpdateShoes);
         imgBackUpdateShoes = findViewById(R.id.imgBackUpdateShoes);
         btnUpdateShoe = findViewById(R.id.btnUpdateShoes);
+        etShop = findViewById(R.id.etUpdateShoesShop);
 
 
 //        intent to go back to admin page
@@ -122,7 +123,7 @@ public class UpdateShoesActivity extends AppCompatActivity {
             etShoeName.setText(bundle.getString("shoesName"));
             etShoePrice.setText(Float.toString(bundle.getFloat("shoesPrice")));
             etShoeDescription.setText("shoesDescription");
-
+            etShop.setText(bundle.getString("shopId"));
             shoesId = bundle.getInt("shoesId");
 
         }
@@ -187,12 +188,13 @@ public class UpdateShoesActivity extends AppCompatActivity {
     private void update() {
         SaveImageOnly();
 
-        String shoesBrand = "Addidas";
+        String shoesBrand = etBrand.getText().toString();
         String shoesName = etShoeName.getText().toString();
         float shoesPrice = Float.parseFloat(etShoePrice.getText().toString());
         String shoesDescription = etShoeDescription.getText().toString();
+        int shopId = Integer.parseInt(etShop.getText().toString());
 
-        Shoes shoes = new Shoes(shoesBrand,shoesName,shoesPrice,shoesDescription,imageName);
+        Shoes shoes = new Shoes(shoesBrand,shoesName,shoesPrice,shoesDescription,imageName,shopId);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Url.BASE_URL)

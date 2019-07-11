@@ -23,41 +23,49 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import animation.Animation;
 import url.Url;
 
-public class ShoesDescriptionActivity extends AppCompatActivity {
+public class ShoesDescriptionActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    int onStartCount = 0;
+
     private Toolbar toolbar;
     private TextView tvNameDes,tvReviewDescription, tvShoesBrandDescription, tvShoesNameDescription, tvShoesPriceDescription;
 
     private int shoesId;
     private ImageView imgDisplayHeader;
 
+//    for map
+    private GoogleMap mMap;
+
+//    for animation
+    private Animation animation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shoes_description);
 
-//        setting slide animation for this page
-        onStartCount = 1;
-        if (savedInstanceState == null) // 1st time
-        {
-            this.overridePendingTransition(R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left);
-            onStartCount++;
-        } else // already created so reverse animation
-        {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
-                    R.anim.anim_slide_out_right);
+//        using animation
+        animation = new Animation();
+        animation.slideLeft(this);
 
-            onStartCount = 2;
-        }
 
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
 
         imgDisplayHeader = findViewById(R.id.header);
@@ -67,7 +75,6 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         tvShoesBrandDescription = findViewById(R.id.tvShoesBrandDescription);
         tvShoesNameDescription = findViewById(R.id.tvShoesNameDescription);
         tvShoesPriceDescription  = findViewById(R.id.tvShoesPriceDescription);
-
 
 
 //      setting toolbar for this activity
@@ -126,6 +133,7 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         }
     }
 
+//    setting splash animation in review
     private void settingAnimation() {
         int[] attrs = new int[]{R.attr.selectableItemBackground};
         TypedArray typedArray = this    .obtainStyledAttributes(attrs);
@@ -133,8 +141,8 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         tvNameDes.setBackgroundResource(backgroundResource);
     }
 
+//    setting collapsing toolbar
     private void collapsingToolbar() {
-
         final CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
@@ -162,21 +170,6 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
     }
 
-    //     onStart() is called when activity is visible to user
-    @Override
-    protected void onStart() {
-        // TODO Auto-generated method stub
-        super.onStart();
-        if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.anim_slide_in_left,
-                    R.anim.anim_slide_out_left);
-
-        } else if (onStartCount == 1) {
-            onStartCount++;
-        }
-
-    }
-
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -188,40 +181,20 @@ public class ShoesDescriptionActivity extends AppCompatActivity {
     }
 
 
+//    setting backward toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_shoes_description,menu);
         return true;
     }
 
-
-//      this is slide animation for this activity which loads when page gets started
-
-//    public void setAnimation() {
-//        if (Build.VERSION.SDK_INT > 20) {
-//            Slide slide = new Slide();
-//            slide.setSlideEdge(Gravity.LEFT);
-//            slide.setDuration(1000);
-//            slide.setInterpolator(new FastOutSlowInInterpolator());
-////            slide.setStartDelay(100);
-////            slide.setInterpolator(new AccelerateDecelerateInterpolator());
-//            getWindow().setExitTransition(slide);
-//            getWindow().setEnterTransition(slide);
-//        }
-//    }
-
-//    this is used to set animation i.e. for review activity page
-
-//    public void startActivity(){
-//        Intent i = new Intent(ShoesDescriptionActivity.this, ReviewActivity.class);
-//        if(Build.VERSION.SDK_INT>20){
-//            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(ShoesDescriptionActivity.this);
-//            startActivity(i,options.toBundle());
-//        }
-//        else {
-//            startActivity(i);
-//        }
-//    }
-
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(87.23, 27.12);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
 
 }

@@ -33,7 +33,7 @@ public class ListShoesActivity extends AppCompatActivity {
     private RecyclerView recyclerViewListShoeAdmin;
     private ImageView imgBackListShoes;
 
-//    animation classs
+    // for animation
     private Animation animation;
 
 
@@ -42,10 +42,13 @@ public class ListShoesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_shoes);
 
+        // using animation
         animation = new Animation();
         animation.slideLeft(this);
 
         imgBackListShoes = findViewById(R.id.imgBackListShoes);
+        recyclerViewListShoeAdmin = findViewById(R.id.recyclerViewListShoesAdmin);
+
         imgBackListShoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,9 +60,7 @@ public class ListShoesActivity extends AppCompatActivity {
 
 
 
-        recyclerViewListShoeAdmin = findViewById(R.id.recyclerViewListShoesAdmin);
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
-
         Call<List<Shoes>> listCall = shoesAPI.getShoes();
         listCall.enqueue(new Callback<List<Shoes>>() {
             @Override
@@ -80,30 +81,5 @@ public class ListShoesActivity extends AppCompatActivity {
                 Toast.makeText(ListShoesActivity.this, "Error : " + t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
-
-//    private void delete() {
-//        ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
-//        Call<Void> voidCall = shoesAPI.deleteShoes(1);
-//        voidCall.enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//                if (!response.isSuccessful()){
-//                    Toast.makeText(ListShoesActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//                Toast.makeText(ListShoesActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//                Toast.makeText(ListShoesActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-//            }
-//        });
-//    }
-//
-
 }

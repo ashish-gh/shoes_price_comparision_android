@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -15,6 +19,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.shoespricecomparision.R;
+import com.example.shoespricecomparision.admin.BLL.LoginBLL;
+import com.example.shoespricecomparision.admin.BLL.ShoesBLL;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,23 +50,22 @@ import shoesAPI.ShoesAPI;
 import url.Url;
 
 public class AddItemActivity extends AppCompatActivity {
-    private EditText  etShoeName, etShoePrice, etShoeDescription;
-    private Spinner spnBrand;
+    private EditText  etShoeName, etShoePrice, etShoeDescription, etBrand, etShop;
     private ImageView imgShoe, imgBackAddItem;
     private Button btnAddShoe;
     String imagePath;
     String imageName;
 
-//    animation class
-
+    // animation class
     private Animation animation;
 
+    //for notification
     private int id =1;
-
     CreateChannel createChannel = new CreateChannel(this);
     private NotificationManagerCompat notificationManagerCompat;
 
-
+    //for sensor
+    private SensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,19 +75,19 @@ public class AddItemActivity extends AppCompatActivity {
         animation= new Animation();
         animation.slideLeft(this);
 
-        spnBrand = findViewById(R.id.spnBrand);
+        etBrand = findViewById(R.id.etBrandAddShoe);
         etShoeName = findViewById(R.id.etAddShoeName);
         etShoePrice= findViewById(R.id.etAddShoePrice);
         etShoeDescription = findViewById(R.id.etAddShoeDescription);
         imgShoe = findViewById(R.id.imgAddShoe);
+        etShop = findViewById(R.id.etAddShop);
         imgBackAddItem = findViewById(R.id.imgBackAddItem);
         btnAddShoe = findViewById(R.id.btnAddShoe);
 
-        notificationManagerCompat = NotificationManagerCompat.from(this);
 
 //        channel to handle notification
+        notificationManagerCompat = NotificationManagerCompat.from(this);
         createChannel.createChannel();
-
 
 //        intent to go back to admin page
         imgBackAddItem.setOnClickListener(new View.OnClickListener() {
@@ -93,14 +99,18 @@ public class AddItemActivity extends AppCompatActivity {
             }
         });
 
+
 //        to add shoe in database
         btnAddShoe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+                if (textValidation()){
+                        save();
+                }
             }
         });
 
+//        to browse image
         imgShoe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,10 +118,16 @@ public class AddItemActivity extends AppCompatActivity {
             }
         });
 
+//        calling sensor gyroscope
+        sensorGyro();
+
+//        calling sensor acclerometer
+        sensorAcclerometer();
 
     }
 
-//    browse function to search image
+
+    //    browse function to search image
     private void browseImage() {
         Intent intent = new Intent(Intent.ACTION_PICK); //to browse image
         intent.setType("image/*"); //user now can only select the image
@@ -148,51 +164,30 @@ public class AddItemActivity extends AppCompatActivity {
         if(imgFlie.exists()){
             Bitmap myBitmap = BitmapFactory.decodeFile(imgFlie.getAbsolutePath());
             imgShoe.setImageBitmap(myBitmap);
-
         }
     }
 
+//
     private void save() {
         SaveImageOnly();
-        String shoesBrand = "Addidas";
-        String shoesName = etShoeName.getText().toString();
+        String shoesBrand = etBrand.getText().toString().trim();
+        String shoesName = etShoeName.getText().toString().trim();
         float shoesPrice = Float.parseFloat(etShoePrice.getText().toString());
         String shoesDescription = etShoeDescription.getText().toString();
+        int shopid = Integer.parseInt(etShop.getText().toString());
 
-        Shoes shoes = new Shoes(shoesBrand,shoesName,shoesPrice,shoesDescription,imageName);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Url.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-
-        ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
-
-        Call<Void> itemsCall = shoesAPI.addShoes(shoes);
-
-        itemsCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
-
-                    Toast.makeText(AddItemActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
-                    return;
-                }
-                Toast.makeText(AddItemActivity.this, "Successfully Added",Toast.LENGTH_LONG).show();
-                addItemNotification();
-
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(AddItemActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
+        //        instance of login business logic layer
+        final ShoesBLL shoesBLL= new ShoesBLL(shoesBrand,shoesName, shoesPrice,shoesDescription,imageName,shopid);
+        strictMode.StrictMode.StrictMode();
+        if (shoesBLL.addShoes()){
+            addItemNotification();
+        }else{
+        }
     }
 
-//    notification to add item
 
+
+//    notification to add item
     private void addItemNotification() {
         Notification notification = new NotificationCompat.Builder(this,CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_message)
@@ -204,33 +199,123 @@ public class AddItemActivity extends AppCompatActivity {
         id++;
     }
 
+
     private void SaveImageOnly() {
         File file = new File(imagePath);
         Toast.makeText(this,""+file,Toast.LENGTH_LONG).show();
-
         RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"),file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("imageFile",file.getName(),requestBody);
-
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
         Call<ImageResponse> responseBodyCall = shoesAPI.uploadImage(body);
-
         StrictMode();
         try {
             Response<ImageResponse> imageResponseResponse = responseBodyCall.execute();
             //After saving an image, retrieve the current name of the image
             imageName = imageResponseResponse.body().getFilename();
             Toast.makeText(this,""+imageName,Toast.LENGTH_LONG).show();
-
         } catch (IOException e) {
             Toast.makeText(this,"Error",Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
+
     private void StrictMode() {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
     }
+
+    // text validation
+    private boolean textValidation() {
+        boolean validate = true;
+        if (TextUtils.isEmpty(etShoeName.getText().toString())) {
+            etShoeName.requestFocus();
+            Toast.makeText(AddItemActivity.this, "Please Enter Shoes Name", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+        if (TextUtils.isEmpty(etShoePrice.getText().toString())) {
+            etShoePrice.requestFocus();
+            Toast.makeText(AddItemActivity.this, "Please Enter Price", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+        if (TextUtils.isEmpty(etShoeDescription.getText().toString())) {
+            etShoeDescription.requestFocus();
+            Toast.makeText(AddItemActivity.this, "Please Enter Decription", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+        if (TextUtils.isEmpty(etBrand.getText().toString())) {
+            etBrand.requestFocus();
+            Toast.makeText(AddItemActivity.this, "Please Enter Brand", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+        return validate;
+    }
+
+    private void sensorGyro(){
+        //        used to get information from sensor
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+
+        SensorEventListener sensorEventListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if (event.values[1] < 0 ){
+//                    move to right for another activity
+
+                }else if (event.values[1] > 0){
+//                     move to dashbaoard
+                    Intent intent = new Intent(AddItemActivity.this, AdminDashboardActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+        if (sensor != null){
+            sensorManager.registerListener(sensorEventListener, sensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }else{
+            Toast.makeText(this, "No sensor found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void sensorAcclerometer(){
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        SensorEventListener acclerometer = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                float[] values = event.values;
+//                if x axis has value more than 5 then add item
+                if (values[0] > 5){
+//                    add item
+                    if (textValidation()){
+                        if (imageName !=null){
+                            save();
+                        }else {
+                            Toast.makeText(AddItemActivity.this, "Please select valid image", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
+        if (sensor != null){
+            sensorManager.registerListener(acclerometer, sensor,SensorManager.SENSOR_DELAY_NORMAL);
+        }else{
+            Toast.makeText(this, "No sensor found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
 
 
 }

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -22,6 +23,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ import android.widget.Toast;
 import com.example.shoespricecomparision.LoginActivity;
 import com.example.shoespricecomparision.MainActivity;
 import com.example.shoespricecomparision.R;
+import com.example.shoespricecomparision.SignupActivity;
 import com.example.shoespricecomparision.admin.ListShoesActivity;
 import com.example.shoespricecomparision.admin.UpdateShoesActivity;
 
@@ -60,27 +63,33 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import shoesAPI.ShoesAPI;
 import url.Url;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
+
+
 public class SettingFragment extends Fragment implements View.OnClickListener{
 
     private ImageView imgProfile;
     private TextView userName;
     public static final int CAMERA_REQUEST_CODE = 1999;
-    private LinearLayout linearLayout;
-    private RelativeLayout relativeLayout;
-
     private Button btnLoginProfile;
-
     private TextView tvFistName,tvLastName,tvWelcome;
     private EditText etEmail, etContact, etPassword,etConfirmPassword;
+    private Button btnLogout;
 
+
+    private LinearLayout linearLayout;
+    private RelativeLayout relativeLayout;
     private CardView cardViewLogin, cardViewUpdateUser;
+
     int id;
     String imagePath;
     String imageName;
     private Button btnUpdate;
+
+    // for shared preference
+    SharedPreferences sharedPreferences;
+
 
 
     public SettingFragment() {
@@ -94,43 +103,43 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         // Inflate the shoes_admin for this fragment
         final View view = inflater.inflate(R.layout.fragment_setting,container,false);
 
+        //        to make keyboard floatable
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_MASK_ADJUST);
 
-
         imgProfile = view.findViewById(R.id.imgProfile);
-
         tvFistName = view.findViewById(R.id.tvFirstNameProfile);
         tvLastName = view.findViewById(R.id.tvLastNameProfile);
         tvWelcome= view.findViewById(R.id.tvWelcome);
-
         etEmail = view.findViewById(R.id.etEmailProfile);
         etContact = view.findViewById(R.id.etContactProfile);
         etPassword = view.findViewById(R.id.etPasswordProfile);
         etConfirmPassword = view.findViewById(R.id.etConfirmPasswordProfile);
         tvFistName = view.findViewById(R.id.tvFirstNameProfile);
         tvLastName= view.findViewById(R.id.tvLastNameProfile);
-
         btnLoginProfile = view.findViewById(R.id.btnLoginProfile);
-
         cardViewLogin = view.findViewById(R.id.cardLoginAccount);
         cardViewUpdateUser= view.findViewById(R.id.cardUpdateUserProfile);
-
         btnUpdate = view.findViewById(R.id.btnUpdateProfile);
+
+        btnLogout = view.findViewById(R.id.btnLogoutUser);
+
 
         linearLayout= view.findViewById(R.id.lnrUserDetails);
         relativeLayout= view.findViewById(R.id.rtlLoginProfile);
 
-        btnLoginProfile.setOnClickListener(this);
 
+        btnLoginProfile.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
         imgProfile.setOnClickListener(this);
-        if (Url.user != null){
+
+        sharedPreferences =  getActivity().getSharedPreferences("UserType",MODE_PRIVATE);
+
+        if (Url.accessToken.length() > 5){
 //            when user is logged in
             relativeLayout.setVisibility(View.GONE);
             tvWelcome.setVisibility(View.GONE);
             getUser();
-//
             checkPermission();
         }else {
 //            when user is not logged in
@@ -141,12 +150,12 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
             tvLastName.setVisibility(View.GONE);
             imgProfile.setClickable(false);
             imgProfile.setImageResource(R.drawable.noimage);
+            btnLogout.setVisibility(View.GONE);
 //            cardViewUpdateUser.setVisibility(View.INVISIBLE);
 
         }
 //        to check permission for user taking photo
         checkPermission();
-
         return view;
     }
 
@@ -154,7 +163,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
 
-        Call<List<User>> listCall = shoesAPI.getUserById(1);
+        Call<List<User>> listCall = shoesAPI.getUserById(Url.userId);
         listCall.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -188,9 +197,14 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 //        to update user profile
 
         if (v.getId()==R.id.btnUpdateProfile){
-            updateUser();
+            if (textvalidation()){
+                if (checkPassword()){
+                    if (passwordValidation()){
+                        updateUser();
+                    }
 
-            Toast.makeText(getActivity(), "Update Activity", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
 
 
@@ -214,7 +228,6 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
             imgGallery.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(getActivity(), "Gallery", Toast.LENGTH_SHORT).show();
                     browseImage();
                     dialog.dismiss();
                 }
@@ -223,39 +236,65 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
             imgCamera.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(getActivity(), "Camera", Toast.LENGTH_SHORT).show();
                     loadCamera();
                     dialog.dismiss();
 
                 }
             });
-//
-//            Button dialogButton = (Button) dialog.findViewById(R.id.btn);
-//            // if button is clicked, close the custom dialog
-//            dialogButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    dialog.dismiss();
-//                }
-//            });
-
-
-
-//            btn.setOnClickListener(this);
-//            imgGallery.setOnClickListener(this);
-//            imgProfile.setOnClickListener(this);
-
-
             if (v.getId() == R.id.imageGalleryProfile){
-//                Toast.makeText(getActivity(), "Open Camera", Toast.LENGTH_SHORT).show();
             }
-
         }else if(v.getId() == R.id.imageCameraProfile){
-//            Toast.makeText(getActivity(), "Open Camera", Toast.LENGTH_SHORT).show();
         }else if (v.getId() == R.id.imageGalleryProfile){
-//            Toast.makeText(getActivity(), "Open Gallery", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+        public Boolean checkPassword() {
+            if (etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
+                return true;
+            } else {
+                Toast.makeText(getActivity(), "Password Not Matched", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+    private boolean textvalidation() {
+        boolean validate =true;
+        if (TextUtils.isEmpty(etEmail.getText().toString())) {
+            etEmail.requestFocus();
+            Toast.makeText(getActivity(), "Please Enter Email", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(etPassword.getText().toString())) {
+            etPassword.requestFocus();
+            Toast.makeText(getActivity(), "Please Enter Password", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(etContact.getText().toString())) {
+            etContact.requestFocus();
+            Toast.makeText(getActivity(), "Please Enter contact", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+
+        if (TextUtils.isEmpty(etConfirmPassword.getText().toString())) {
+            etConfirmPassword .requestFocus();
+            Toast.makeText(getActivity(), "Please Enter Password", Toast.LENGTH_SHORT).show();
+            validate = false;
+        }
+        return validate;
+
+    }
+
+
+    public Boolean passwordValidation() {
+        if (etPassword.getText().toString().length() >= 6 && etPassword.getText().toString().length() <= 10) {
+            return true;
+        } else {
+            Toast.makeText(getActivity(), "Password should be more than 6 and less than 10 characters", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
 
@@ -270,6 +309,8 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 //    to update user
 
     private void updateUser() {
+
+        Log.d(TAG, "updateUser: this is user id" +Url.userId);
         saveImageOnly();
         String fistName = tvFistName.getText().toString();
         String lastName = tvLastName.getText().toString();
@@ -277,6 +318,9 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
         String contact = etContact.getText().toString();
         String password = etPassword.getText().toString();
 //        String imageName = "profile.jpg";
+
+
+        Log.d(TAG, "updateUser: imgae name " + imageName);
 
 
         User user = new User(fistName,lastName,contact,email,password,imageName,"user");
@@ -289,7 +333,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener{
 
         ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
 
-        Call<Void> itemsCall = shoesAPI.updateUser(1, user);
+        Call<Void> itemsCall = shoesAPI.updateUser(Url.userId, user);
 
         itemsCall.enqueue(new Callback<Void>() {
             @Override

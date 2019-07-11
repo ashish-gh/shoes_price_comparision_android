@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.shoespricecomparision.admin.AddItemActivity;
+import com.example.shoespricecomparision.admin.BLL.LoginBLL;
+import com.example.shoespricecomparision.admin.BLL.RegisterBLL;
 import com.example.shoespricecomparision.admin.ListStoreActivity;
 
 import java.util.List;
@@ -32,6 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import shoesAPI.ShoesAPI;
+import strictMode.StrictMode;
 import url.Url;
 
 public class SignupActivity extends AppCompatActivity {
@@ -59,6 +62,7 @@ public class SignupActivity extends AppCompatActivity {
         animation = new Animation();
         animation.slideLeft(this);
 
+//        setting layout
         linearLayout = findViewById(R.id.linearLayoutRegister);
 
 //        channel to handle notification
@@ -125,7 +129,6 @@ public class SignupActivity extends AppCompatActivity {
 
 
     private boolean registerUser() {
-
         String firstName = etFirstName.getText().toString();
         String lastName = etLastName.getText().toString();
         String contact = etContact.getText().toString();
@@ -134,37 +137,17 @@ public class SignupActivity extends AppCompatActivity {
         String userType ="user";
         String profileImage ="profile.png";
 
-        User user = new User(firstName,lastName,email,contact,password,profileImage,userType);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Url.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        ShoesAPI shoesAPI = retrofit.create(ShoesAPI.class);
-        Call<Void> itemsCall = shoesAPI.registerUser(user);
-
-        itemsCall.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if (!response.isSuccessful()){
-                    Toast.makeText(SignupActivity.this,"Code" + response.code(),Toast.LENGTH_LONG).show();
-                    return;
-                }else {
-                    Toast.makeText(SignupActivity.this, "Registered", Toast.LENGTH_LONG).show();
-                    registerNotification();
-                    userCheck = true;
-                }
-            }
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(SignupActivity.this,"Error " + t.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-            }
-        });
-        return userCheck;
+        // using business logic layer
+        final RegisterBLL registerBLL= new RegisterBLL(firstName,lastName,email,contact,password,profileImage,userType);
+        StrictMode.StrictMode();
+        if (registerBLL.registerUser()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
-
+    // register notification
     private void registerNotification() {
         Notification notification = new NotificationCompat.Builder(this,CreateChannel.CHANNEL_1)
                 .setSmallIcon(R.drawable.ic_message)
@@ -176,7 +159,7 @@ public class SignupActivity extends AppCompatActivity {
         id++;
     }
 
-
+    //text validation
     private Boolean textValidation() {
         boolean validate = true;
         if (TextUtils.isEmpty(etFirstName.getText().toString())) {
@@ -212,7 +195,7 @@ public class SignupActivity extends AppCompatActivity {
         return validate;
     }
 
-
+    // email validation
     public Boolean emailValidation() {
         String email = etEmail.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
@@ -224,6 +207,7 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    // contact validation
     private boolean contactValidation() {
         String number = etContact.getText().toString();
         if (number.length() == 10) {
@@ -234,17 +218,17 @@ public class SignupActivity extends AppCompatActivity {
         }
     }
 
+    // to check if both password are same
     public Boolean checkPassword() {
         if (etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
             return true;
         } else {
-//            Snackbar snackbar = Snackbar.make(linearLayout, "Password Not Matched", Snackbar.LENGTH_SHORT);
-//            snackbar.show();
             Toast.makeText(SignupActivity.this, "Password Not Matched", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
+    //
     public Boolean passwordValidation() {
         if (etPassword.getText().toString().length() >= 6 && etPassword.getText().toString().length() <= 10) {
             return true;
@@ -255,7 +239,6 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     private boolean checkUser() {
-
         ShoesAPI shoesAPI = Url.getInstance().create(ShoesAPI.class);
         Call<List<User>> listCall = shoesAPI.getUserByEmail(etEmail.getText().toString());
         listCall.enqueue(new Callback<List<User>>() {
@@ -285,7 +268,7 @@ public class SignupActivity extends AppCompatActivity {
         return userCheck;
     }
 
-
+    // to clear text when user is registered
     private void clearField() {
         etFirstName.setText("");
         etLastName.setText("");
@@ -294,6 +277,5 @@ public class SignupActivity extends AppCompatActivity {
         etEmail.setText("");
         etContact.setText("");
     }
-
 
 }

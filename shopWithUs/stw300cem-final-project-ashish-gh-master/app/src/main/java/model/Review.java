@@ -1,25 +1,25 @@
 package model;
 
 public class Review {
-    private int id;
+    private int reviewId;
     private String review;
-    private String userName;
+    private int userId;
     private int shoesId;
-    private String reviewTime;
+    private String reviewDate;
 
-    public Review(String review, String userName, int shoesId, String reviewTime) {
+    public Review(String review, int userId, int shoesId, String reviewDate) {
         this.review = review;
-        this.userName = userName;
+        this.userId = userId;
         this.shoesId = shoesId;
-        this.reviewTime = reviewTime;
+        this.reviewDate = reviewDate;
     }
 
-    public int getId() {
-        return id;
+    public int getReviewId() {
+        return reviewId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
     }
 
     public String getReview() {
@@ -30,12 +30,12 @@ public class Review {
         this.review = review;
     }
 
-    public String getUserName() {
-        return userName;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getShoesId() {
@@ -46,11 +46,11 @@ public class Review {
         this.shoesId = shoesId;
     }
 
-    public String getReviewTime() {
-        return reviewTime;
+    public String getReviewDate() {
+        return reviewDate;
     }
 
-    public void setReviewTime(String reviewTime) {
-        this.reviewTime = reviewTime;
+    public void setReviewDate(String reviewDate) {
+        this.reviewDate = reviewDate;
     }
 }

@@ -7,7 +7,10 @@ import java.util.List;
 import model.ImageResponse;
 import model.LoginSignUpResponse;
 import model.Review;
+import model.ReviewResponse;
 import model.Shoes;
+import model.ShoesResponse;
+import model.ShopResponse;
 import model.Store;
 import model.User;
 import okhttp3.MultipartBody;
@@ -31,8 +34,8 @@ public interface ShoesAPI {
 
 
 //------------------------------------------------------------------------------------
-    @POST("api/addShoe")
-    Call<Void> addShoes(@Body Shoes shoes);
+    @POST("api/shoes")
+    Call<ShoesResponse> addShoes(@Body Shoes shoes);
 
     @Multipart
     @POST("api/upload")
@@ -55,7 +58,7 @@ public interface ShoesAPI {
     @GET("api/shoes/:shoesId")
     Call<List<Shoes>> getShoe();
 
-    @GET("api/shoes/{shoesName}")
+    @GET("api/shoes/{shoesName}/shoes")
     Call<List<Shoes>> getShoeByName(@Path("shoesName") String shoesName);
 
     @GET("api/shoes/{shoesId}")
@@ -79,7 +82,7 @@ public interface ShoesAPI {
 
 //to add new user
     @POST("api/register")
-    Call<Void> registerUser(@Body User user);
+    Call<LoginSignUpResponse> registerUser(@Body User user);
 
 // for login
     @POST("/api/auth")
@@ -90,7 +93,7 @@ public interface ShoesAPI {
 //    for store
 
     @POST("api/store")
-    Call<Void> addStores(@Body Store store);
+    Call<ShopResponse> addStores(@Body Store store);
 
     @GET("api/store")
     Call<List<Store>> getStores();
@@ -112,11 +115,11 @@ public interface ShoesAPI {
 //----------------------------------------
 //for review
 
-    @GET("api/review/{shoesId}")
+    @GET("api/review/{shoesId}/shoes")
     Call<List<Review>> getReviewsByShoes(@Path("shoesId") int shoesId);
 
     @POST("api/review")
-    Call<Void> addReview(@Body Review review);
+    Call<ReviewResponse> addReview(@Body Review review);
 
 
     @DELETE("api/review/{reviewId}")

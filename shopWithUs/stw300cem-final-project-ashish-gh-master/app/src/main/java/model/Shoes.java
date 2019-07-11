@@ -7,13 +7,15 @@ public class Shoes {
     private float shoesPrice;
     private String shoesDescription;
     private String shoesImageName;
+    private int shopId;
 
-    public Shoes(String shoesBrand, String shoesName, float shoesPrice, String shoesDescription, String shoesImageName) {
+    public Shoes(String shoesBrand, String shoesName, float shoesPrice, String shoesDescription, String shoesImageName, int shopId ) {
         this.shoesBrand = shoesBrand;
         this.shoesName = shoesName;
         this.shoesPrice = shoesPrice;
         this.shoesDescription = shoesDescription;
         this.shoesImageName = shoesImageName;
+        this.shopId = shopId;
     }
 
     public int getItemId() {
@@ -62,5 +64,13 @@ public class Shoes {
 
     public void setShoesImageName(String shoesImageName) {
         this.shoesImageName = shoesImageName;
+    }
+
+    public int getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(int shopId) {
+        this.shopId = shopId;
     }
 }

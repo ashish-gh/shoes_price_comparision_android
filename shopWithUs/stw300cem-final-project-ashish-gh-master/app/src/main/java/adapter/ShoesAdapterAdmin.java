@@ -111,6 +111,7 @@ public class ShoesAdapterAdmin extends RecyclerView.Adapter<ShoesAdapterAdmin.Sh
                 intent.putExtra("shoesPrice",shoes.getShoesPrice());
                 intent.putExtra("shoesDescription",shoes.getShoesDescription());
                 intent.putExtra("shoesImage",shoes.getShoesImageName());
+                intent.putExtra("shopId",shoes.getShopId());
                 context.startActivity(intent);
             }
         });

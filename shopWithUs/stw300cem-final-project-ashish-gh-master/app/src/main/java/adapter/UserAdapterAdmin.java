@@ -79,7 +79,7 @@ public class UserAdapterAdmin extends RecyclerView.Adapter<UserAdapterAdmin.User
                 builder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        delete(user.getId());
+                        delete(user.getUserId());
                     }
                 });
                 builder.setNegativeButton("no", new DialogInterface.OnClickListener() {
